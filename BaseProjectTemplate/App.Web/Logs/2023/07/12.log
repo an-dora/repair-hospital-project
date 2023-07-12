@@ -1,0 +1,837 @@
+2023-07-12 20:27:26.521  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Application started. Press Ctrl+C to shut down. 
+2023-07-12 20:27:26.667  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Hosting environment: Development 
+2023-07-12 20:27:26.678  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Content root path: D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Web 
+2023-07-12 20:27:27.828  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; GET / => 200 
+2023-07-12 20:31:57.791  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; GET /Account/Logout => 302 
+2023-07-12 20:31:57.985  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; GET /login => 200 
+2023-07-12 20:32:05.528 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: DECLARE @__ToLower_0 varchar(200) = 'admin';
+
+SELECT [a].[AppRoleId], [a].[Avatar], [a].[BlockedBy], [a].[BlockedTo], [a].[Email], [a].[FullName], [a].[Id], [a].[PasswordHash], [a].[PhoneNumber1], CASE
+    WHEN [a0].[Id] IS NULL THEN N''
+    ELSE [a0].[Name]
+END, [a].[Username], [a0].[Id], [a1].[MstPermissionId], [a1].[Id]
+FROM [AppUser] AS [a]
+LEFT JOIN [AppRole] AS [a0] ON [a].[AppRoleId] = [a0].[Id]
+LEFT JOIN [AppRolePermission] AS [a1] ON [a0].[Id] = [a1].[AppRoleId]
+WHERE [a].[DeletedDate] IS NULL AND ([a].[Username] = @__ToLower_0)
+ORDER BY [a].[Id], [a0].[Id], [a1].[Id] 
+2023-07-12 20:32:05.887 ERROR Microsoft.EntityFrameworkCore.Database.Command.? [?]: Failed executing DbCommand (43ms) [Parameters=[@__ToLower_0='?' (Size = 200) (DbType = AnsiString)], CommandType='Text', CommandTimeout='30']
+SELECT [t].[AppRoleId], [t].[Avatar], [t].[BlockedBy], [t].[BlockedTo], [t].[Email], [t].[FullName], [t].[Id], [t].[PasswordHash], [t].[PhoneNumber1], [t].[c], [t].[Username], [t].[Id0], [a1].[MstPermissionId], [a1].[Id]
+FROM (
+    SELECT TOP(2) [a].[AppRoleId], [a].[Avatar], [a].[BlockedBy], [a].[BlockedTo], [a].[Email], [a].[FullName], [a].[Id], [a].[PasswordHash], [a].[PhoneNumber1], CASE
+        WHEN [a0].[Id] IS NULL THEN N''
+        ELSE [a0].[Name]
+    END AS [c], [a].[Username], [a0].[Id] AS [Id0]
+    FROM [AppUser] AS [a]
+    LEFT JOIN [AppRole] AS [a0] ON [a].[AppRoleId] = [a0].[Id]
+    WHERE [a].[DeletedDate] IS NULL AND ([a].[Username] = @__ToLower_0)
+) AS [t]
+LEFT JOIN [AppRolePermission] AS [a1] ON [t].[Id0] = [a1].[AppRoleId]
+ORDER BY [t].[Id], [t].[Id0], [a1].[Id] 
+2023-07-12 20:32:05.924 ERROR Microsoft.EntityFrameworkCore.Query.? [?]: An exception occurred while iterating over the results of a query for context type 'App.Data.WebAppDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'AppUser'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__277_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:994657f5-d53a-4442-bc78-99e1ce959e23
+Error Number:208,State:1,Class:16 Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'AppUser'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__277_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:994657f5-d53a-4442-bc78-99e1ce959e23
+Error Number:208,State:1,Class:16
+
+2023-07-12 20:32:06.218  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [30]: ANONYMOUS_USER; POST /login => 200 
+2023-07-12 20:32:06.261 ERROR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.? [?]: An unhandled exception has occurred while executing the request. Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'AppUser'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__277_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at App.Data.Repositories.GenericRepository.GetOneAsync[TEntity,TViewModel](Expression`1 where, MapperConfiguration mapperConfig, Boolean selectFromTrash) in D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Data\Repositories\GenericRepository.GetOne.cs:line 93
+   at App.Web.Controllers.AccountController.Login(LoginVM model) in D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Web\Controllers\AccountController.cs:line 35
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at App.Web.WebConfig.Middlewares.AppLoggingMiddleware.Invoke(HttpContext context) in D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Web\WebConfig\Middlewares\AppLoggingMiddleware.cs:line 30
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+ClientConnectionId:994657f5-d53a-4442-bc78-99e1ce959e23
+Error Number:208,State:1,Class:16
+
+2023-07-12 20:32:55.750  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Application started. Press Ctrl+C to shut down. 
+2023-07-12 20:32:55.825  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Hosting environment: Development 
+2023-07-12 20:32:55.832  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Content root path: D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Web 
+2023-07-12 20:32:56.565  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; GET / => 200 
+2023-07-12 20:33:12.680  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; GET /Account/Logout => 302 
+2023-07-12 20:33:12.803  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; GET /login => 200 
+2023-07-12 20:33:18.749 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: DECLARE @__ToLower_0 varchar(200) = 'admin';
+
+SELECT [a].[AppRoleId], [a].[Avatar], [a].[BlockedBy], [a].[BlockedTo], [a].[Email], [a].[FullName], [a].[Id], [a].[PasswordHash], [a].[PhoneNumber1], CASE
+    WHEN [a0].[Id] IS NULL THEN N''
+    ELSE [a0].[Name]
+END, [a].[Username], [a0].[Id], [a1].[MstPermissionId], [a1].[Id]
+FROM [AppUser] AS [a]
+LEFT JOIN [AppRole] AS [a0] ON [a].[AppRoleId] = [a0].[Id]
+LEFT JOIN [AppRolePermission] AS [a1] ON [a0].[Id] = [a1].[AppRoleId]
+WHERE [a].[DeletedDate] IS NULL AND ([a].[Username] = @__ToLower_0)
+ORDER BY [a].[Id], [a0].[Id], [a1].[Id] 
+2023-07-12 20:33:19.030 ERROR Microsoft.EntityFrameworkCore.Database.Command.? [?]: Failed executing DbCommand (43ms) [Parameters=[@__ToLower_0='?' (Size = 200) (DbType = AnsiString)], CommandType='Text', CommandTimeout='30']
+SELECT [t].[AppRoleId], [t].[Avatar], [t].[BlockedBy], [t].[BlockedTo], [t].[Email], [t].[FullName], [t].[Id], [t].[PasswordHash], [t].[PhoneNumber1], [t].[c], [t].[Username], [t].[Id0], [a1].[MstPermissionId], [a1].[Id]
+FROM (
+    SELECT TOP(2) [a].[AppRoleId], [a].[Avatar], [a].[BlockedBy], [a].[BlockedTo], [a].[Email], [a].[FullName], [a].[Id], [a].[PasswordHash], [a].[PhoneNumber1], CASE
+        WHEN [a0].[Id] IS NULL THEN N''
+        ELSE [a0].[Name]
+    END AS [c], [a].[Username], [a0].[Id] AS [Id0]
+    FROM [AppUser] AS [a]
+    LEFT JOIN [AppRole] AS [a0] ON [a].[AppRoleId] = [a0].[Id]
+    WHERE [a].[DeletedDate] IS NULL AND ([a].[Username] = @__ToLower_0)
+) AS [t]
+LEFT JOIN [AppRolePermission] AS [a1] ON [t].[Id0] = [a1].[AppRoleId]
+ORDER BY [t].[Id], [t].[Id0], [a1].[Id] 
+2023-07-12 20:33:19.063 ERROR Microsoft.EntityFrameworkCore.Query.? [?]: An exception occurred while iterating over the results of a query for context type 'App.Data.WebAppDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'AppUser'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__277_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:b06c6afe-79e6-4c9d-ac53-6755ca9810eb
+Error Number:208,State:1,Class:16 Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'AppUser'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__277_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:b06c6afe-79e6-4c9d-ac53-6755ca9810eb
+Error Number:208,State:1,Class:16
+
+2023-07-12 20:33:19.344  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [30]: ANONYMOUS_USER; POST /login => 200 
+2023-07-12 20:33:19.370 ERROR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.? [?]: An unhandled exception has occurred while executing the request. Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'AppUser'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__277_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at App.Data.Repositories.GenericRepository.GetOneAsync[TEntity,TViewModel](Expression`1 where, MapperConfiguration mapperConfig, Boolean selectFromTrash) in D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Data\Repositories\GenericRepository.GetOne.cs:line 93
+   at App.Web.Controllers.AccountController.Login(LoginVM model) in D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Web\Controllers\AccountController.cs:line 35
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at App.Web.WebConfig.Middlewares.AppLoggingMiddleware.Invoke(HttpContext context) in D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Web\WebConfig\Middlewares\AppLoggingMiddleware.cs:line 30
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+ClientConnectionId:b06c6afe-79e6-4c9d-ac53-6755ca9810eb
+Error Number:208,State:1,Class:16
+
+2023-07-12 20:33:58.149  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Application started. Press Ctrl+C to shut down. 
+2023-07-12 20:33:58.211  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Hosting environment: Development 
+2023-07-12 20:33:58.221  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Content root path: D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Web 
+2023-07-12 20:33:58.839  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; GET / => 200 
+2023-07-12 20:34:46.983  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; GET /Account/Logout => 302 
+2023-07-12 20:34:47.125  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; GET /login => 200 
+2023-07-12 20:34:53.339 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: DECLARE @__ToLower_0 varchar(200) = 'admin';
+
+SELECT [a].[AppRoleId], [a].[Avatar], [a].[BlockedBy], [a].[BlockedTo], [a].[Email], [a].[FullName], [a].[Id], [a].[PasswordHash], [a].[PhoneNumber1], CASE
+    WHEN [a0].[Id] IS NULL THEN N''
+    ELSE [a0].[Name]
+END, [a].[Username], [a0].[Id], [a1].[MstPermissionId], [a1].[Id]
+FROM [AppUser] AS [a]
+LEFT JOIN [AppRole] AS [a0] ON [a].[AppRoleId] = [a0].[Id]
+LEFT JOIN [AppRolePermission] AS [a1] ON [a0].[Id] = [a1].[AppRoleId]
+WHERE [a].[DeletedDate] IS NULL AND ([a].[Username] = @__ToLower_0)
+ORDER BY [a].[Id], [a0].[Id], [a1].[Id] 
+2023-07-12 20:34:53.619 ERROR Microsoft.EntityFrameworkCore.Database.Command.? [?]: Failed executing DbCommand (44ms) [Parameters=[@__ToLower_0='?' (Size = 200) (DbType = AnsiString)], CommandType='Text', CommandTimeout='30']
+SELECT [t].[AppRoleId], [t].[Avatar], [t].[BlockedBy], [t].[BlockedTo], [t].[Email], [t].[FullName], [t].[Id], [t].[PasswordHash], [t].[PhoneNumber1], [t].[c], [t].[Username], [t].[Id0], [a1].[MstPermissionId], [a1].[Id]
+FROM (
+    SELECT TOP(2) [a].[AppRoleId], [a].[Avatar], [a].[BlockedBy], [a].[BlockedTo], [a].[Email], [a].[FullName], [a].[Id], [a].[PasswordHash], [a].[PhoneNumber1], CASE
+        WHEN [a0].[Id] IS NULL THEN N''
+        ELSE [a0].[Name]
+    END AS [c], [a].[Username], [a0].[Id] AS [Id0]
+    FROM [AppUser] AS [a]
+    LEFT JOIN [AppRole] AS [a0] ON [a].[AppRoleId] = [a0].[Id]
+    WHERE [a].[DeletedDate] IS NULL AND ([a].[Username] = @__ToLower_0)
+) AS [t]
+LEFT JOIN [AppRolePermission] AS [a1] ON [t].[Id0] = [a1].[AppRoleId]
+ORDER BY [t].[Id], [t].[Id0], [a1].[Id] 
+2023-07-12 20:34:53.666 ERROR Microsoft.EntityFrameworkCore.Query.? [?]: An exception occurred while iterating over the results of a query for context type 'App.Data.WebAppDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'AppUser'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__277_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:53ec8c62-da10-4d1c-8044-e257a9b01f7d
+Error Number:208,State:1,Class:16 Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'AppUser'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__277_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:53ec8c62-da10-4d1c-8044-e257a9b01f7d
+Error Number:208,State:1,Class:16
+
+2023-07-12 20:34:53.986  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [30]: ANONYMOUS_USER; POST /login => 200 
+2023-07-12 20:34:54.016 ERROR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.? [?]: An unhandled exception has occurred while executing the request. Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'AppUser'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__277_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at App.Data.Repositories.GenericRepository.GetOneAsync[TEntity,TViewModel](Expression`1 where, MapperConfiguration mapperConfig, Boolean selectFromTrash) in D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Data\Repositories\GenericRepository.GetOne.cs:line 93
+   at App.Web.Controllers.AccountController.Login(LoginVM model) in D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Web\Controllers\AccountController.cs:line 35
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at App.Web.WebConfig.Middlewares.AppLoggingMiddleware.Invoke(HttpContext context) in D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Web\WebConfig\Middlewares\AppLoggingMiddleware.cs:line 30
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+ClientConnectionId:53ec8c62-da10-4d1c-8044-e257a9b01f7d
+Error Number:208,State:1,Class:16
+
+2023-07-12 20:36:44.113  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Application started. Press Ctrl+C to shut down. 
+2023-07-12 20:36:44.136  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Hosting environment: Development 
+2023-07-12 20:36:44.137  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Content root path: D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Web 
+2023-07-12 20:36:44.581  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; GET / => 200 
+2023-07-12 20:40:02.329  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; GET /Account/Logout => 302 
+2023-07-12 20:40:02.423  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; GET /login => 200 
+2023-07-12 20:40:09.492 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: DECLARE @__ToLower_0 varchar(200) = 'admin';
+
+SELECT [a].[AppRoleId], [a].[Avatar], [a].[BlockedBy], [a].[BlockedTo], [a].[Email], [a].[FullName], [a].[Id], [a].[PasswordHash], [a].[PhoneNumber1], CASE
+    WHEN [a0].[Id] IS NULL THEN N''
+    ELSE [a0].[Name]
+END, [a].[Username], [a0].[Id], [a1].[MstPermissionId], [a1].[Id]
+FROM [AppUser] AS [a]
+LEFT JOIN [AppRole] AS [a0] ON [a].[AppRoleId] = [a0].[Id]
+LEFT JOIN [AppRolePermission] AS [a1] ON [a0].[Id] = [a1].[AppRoleId]
+WHERE [a].[DeletedDate] IS NULL AND ([a].[Username] = @__ToLower_0)
+ORDER BY [a].[Id], [a0].[Id], [a1].[Id] 
+2023-07-12 20:40:09.678 ERROR Microsoft.EntityFrameworkCore.Database.Command.? [?]: Failed executing DbCommand (34ms) [Parameters=[@__ToLower_0='?' (Size = 200) (DbType = AnsiString)], CommandType='Text', CommandTimeout='30']
+SELECT [t].[AppRoleId], [t].[Avatar], [t].[BlockedBy], [t].[BlockedTo], [t].[Email], [t].[FullName], [t].[Id], [t].[PasswordHash], [t].[PhoneNumber1], [t].[c], [t].[Username], [t].[Id0], [a1].[MstPermissionId], [a1].[Id]
+FROM (
+    SELECT TOP(2) [a].[AppRoleId], [a].[Avatar], [a].[BlockedBy], [a].[BlockedTo], [a].[Email], [a].[FullName], [a].[Id], [a].[PasswordHash], [a].[PhoneNumber1], CASE
+        WHEN [a0].[Id] IS NULL THEN N''
+        ELSE [a0].[Name]
+    END AS [c], [a].[Username], [a0].[Id] AS [Id0]
+    FROM [AppUser] AS [a]
+    LEFT JOIN [AppRole] AS [a0] ON [a].[AppRoleId] = [a0].[Id]
+    WHERE [a].[DeletedDate] IS NULL AND ([a].[Username] = @__ToLower_0)
+) AS [t]
+LEFT JOIN [AppRolePermission] AS [a1] ON [t].[Id0] = [a1].[AppRoleId]
+ORDER BY [t].[Id], [t].[Id0], [a1].[Id] 
+2023-07-12 20:40:09.698 ERROR Microsoft.EntityFrameworkCore.Query.? [?]: An exception occurred while iterating over the results of a query for context type 'App.Data.WebAppDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'AppUser'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__277_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:1df7374b-6709-46c9-aedf-cfcdedc3593e
+Error Number:208,State:1,Class:16 Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'AppUser'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__277_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:1df7374b-6709-46c9-aedf-cfcdedc3593e
+Error Number:208,State:1,Class:16
+
+2023-07-12 20:40:09.704  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [30]: ANONYMOUS_USER; POST /login => 200 
+2023-07-12 20:40:09.713 ERROR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.? [?]: An unhandled exception has occurred while executing the request. Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'AppUser'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__277_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at App.Data.Repositories.GenericRepository.GetOneAsync[TEntity,TViewModel](Expression`1 where, MapperConfiguration mapperConfig, Boolean selectFromTrash) in D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Data\Repositories\GenericRepository.GetOne.cs:line 93
+   at App.Web.Controllers.AccountController.Login(LoginVM model) in D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Web\Controllers\AccountController.cs:line 35
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at App.Web.WebConfig.Middlewares.AppLoggingMiddleware.Invoke(HttpContext context) in D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Web\WebConfig\Middlewares\AppLoggingMiddleware.cs:line 30
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+ClientConnectionId:1df7374b-6709-46c9-aedf-cfcdedc3593e
+Error Number:208,State:1,Class:16
+
+2023-07-12 20:44:22.910  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Application started. Press Ctrl+C to shut down. 
+2023-07-12 20:44:22.946  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Hosting environment: Development 
+2023-07-12 20:44:22.947  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Content root path: D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Web 
+2023-07-12 20:44:24.560 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: DECLARE @__ToLower_0 varchar(200) = 'admin';
+
+SELECT [a].[AppRoleId], [a].[Avatar], [a].[BlockedBy], [a].[BlockedTo], [a].[Email], [a].[FullName], [a].[Id], [a].[PasswordHash], [a].[PhoneNumber1], CASE
+    WHEN [a0].[Id] IS NULL THEN N''
+    ELSE [a0].[Name]
+END, [a].[Username], [a0].[Id], [a1].[MstPermissionId], [a1].[Id]
+FROM [AppUser] AS [a]
+LEFT JOIN [AppRole] AS [a0] ON [a].[AppRoleId] = [a0].[Id]
+LEFT JOIN [AppRolePermission] AS [a1] ON [a0].[Id] = [a1].[AppRoleId]
+WHERE [a].[DeletedDate] IS NULL AND ([a].[Username] = @__ToLower_0)
+ORDER BY [a].[Id], [a0].[Id], [a1].[Id] 
+2023-07-12 20:44:24.890 ERROR Microsoft.EntityFrameworkCore.Database.Command.? [?]: Failed executing DbCommand (50ms) [Parameters=[@__ToLower_0='?' (Size = 200) (DbType = AnsiString)], CommandType='Text', CommandTimeout='30']
+SELECT [t].[AppRoleId], [t].[Avatar], [t].[BlockedBy], [t].[BlockedTo], [t].[Email], [t].[FullName], [t].[Id], [t].[PasswordHash], [t].[PhoneNumber1], [t].[c], [t].[Username], [t].[Id0], [a1].[MstPermissionId], [a1].[Id]
+FROM (
+    SELECT TOP(2) [a].[AppRoleId], [a].[Avatar], [a].[BlockedBy], [a].[BlockedTo], [a].[Email], [a].[FullName], [a].[Id], [a].[PasswordHash], [a].[PhoneNumber1], CASE
+        WHEN [a0].[Id] IS NULL THEN N''
+        ELSE [a0].[Name]
+    END AS [c], [a].[Username], [a0].[Id] AS [Id0]
+    FROM [AppUser] AS [a]
+    LEFT JOIN [AppRole] AS [a0] ON [a].[AppRoleId] = [a0].[Id]
+    WHERE [a].[DeletedDate] IS NULL AND ([a].[Username] = @__ToLower_0)
+) AS [t]
+LEFT JOIN [AppRolePermission] AS [a1] ON [t].[Id0] = [a1].[AppRoleId]
+ORDER BY [t].[Id], [t].[Id0], [a1].[Id] 
+2023-07-12 20:44:24.926 ERROR Microsoft.EntityFrameworkCore.Query.? [?]: An exception occurred while iterating over the results of a query for context type 'App.Data.WebAppDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'AppUser'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__277_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:ff8ad311-7797-4c7f-b44d-e96c5c0eda59
+Error Number:208,State:1,Class:16 Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'AppUser'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__277_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:ff8ad311-7797-4c7f-b44d-e96c5c0eda59
+Error Number:208,State:1,Class:16
+
+2023-07-12 20:44:24.942  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [30]: ANONYMOUS_USER; POST /login => 200 
+2023-07-12 20:44:24.962 ERROR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.? [?]: An unhandled exception has occurred while executing the request. Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'AppUser'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__277_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at App.Data.Repositories.GenericRepository.GetOneAsync[TEntity,TViewModel](Expression`1 where, MapperConfiguration mapperConfig, Boolean selectFromTrash) in D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Data\Repositories\GenericRepository.GetOne.cs:line 93
+   at App.Web.Controllers.AccountController.Login(LoginVM model) in D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Web\Controllers\AccountController.cs:line 35
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at App.Web.WebConfig.Middlewares.AppLoggingMiddleware.Invoke(HttpContext context) in D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Web\WebConfig\Middlewares\AppLoggingMiddleware.cs:line 30
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+ClientConnectionId:ff8ad311-7797-4c7f-b44d-e96c5c0eda59
+Error Number:208,State:1,Class:16
+
+2023-07-12 20:44:25.074  WARN Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware.? [?]: Unable to configure browser refresh script injection on the response. Consider manually adding '<script src="/_framework/aspnetcore-browser-refresh.js"></script>' to the body of the page. 
+2023-07-12 20:47:52.612  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Application started. Press Ctrl+C to shut down. 
+2023-07-12 20:47:52.676  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Hosting environment: Development 
+2023-07-12 20:47:52.684  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Content root path: D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Web 
+2023-07-12 20:47:53.355  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; GET / => 200 
+2023-07-12 20:48:01.092  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; GET /Account/Logout => 302 
+2023-07-12 20:48:01.239  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; GET /login => 200 
+2023-07-12 20:48:07.381 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: DECLARE @__ToLower_0 varchar(200) = 'admin';
+
+SELECT [a].[AppRoleId], [a].[Avatar], [a].[BlockedBy], [a].[BlockedTo], [a].[Email], [a].[FullName], [a].[Id], [a].[PasswordHash], [a].[PhoneNumber1], CASE
+    WHEN [a0].[Id] IS NULL THEN N''
+    ELSE [a0].[Name]
+END, [a].[Username], [a0].[Id], [a1].[MstPermissionId], [a1].[Id]
+FROM [AppUser] AS [a]
+LEFT JOIN [AppRole] AS [a0] ON [a].[AppRoleId] = [a0].[Id]
+LEFT JOIN [AppRolePermission] AS [a1] ON [a0].[Id] = [a1].[AppRoleId]
+WHERE [a].[DeletedDate] IS NULL AND ([a].[Username] = @__ToLower_0)
+ORDER BY [a].[Id], [a0].[Id], [a1].[Id] 
+2023-07-12 20:48:07.755  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; POST /login => 302 
+2023-07-12 20:48:07.843  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; GET /login => 200 
+2023-07-12 21:02:03.949 ERROR Microsoft.EntityFrameworkCore.Database.Command.? [?]: Failed executing DbCommand (13ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [AppCompany] (
+    [Id] int NOT NULL IDENTITY,
+    [Name] nvarchar(200) NULL,
+    [CompanyCode] nvarchar(50) NULL,
+    [DisplayOrder] int NULL,
+    [CreatedBy] int NULL,
+    [UpdatedBy] int NULL,
+    [CreatedDate] datetime2 NULL,
+    [UpdatedDate] datetime2 NULL,
+    [DeletedDate] datetime2 NULL,
+    CONSTRAINT [PK_AppCompany] PRIMARY KEY ([Id])
+); 
+2023-07-12 21:03:59.611 ERROR Microsoft.EntityFrameworkCore.Database.Command.? [?]: Failed executing DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [AppCompany] (
+    [Id] int NOT NULL IDENTITY,
+    [Name] nvarchar(200) NULL,
+    [CompanyCode] nvarchar(50) NULL,
+    [DisplayOrder] int NULL,
+    [CreatedBy] int NULL,
+    [UpdatedBy] int NULL,
+    [CreatedDate] datetime2 NULL,
+    [UpdatedDate] datetime2 NULL,
+    [DeletedDate] datetime2 NULL,
+    CONSTRAINT [PK_AppCompany] PRIMARY KEY ([Id])
+); 
+2023-07-12 21:07:46.244  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Application started. Press Ctrl+C to shut down. 
+2023-07-12 21:07:46.315  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Hosting environment: Development 
+2023-07-12 21:07:46.323  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Content root path: D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Web 
+2023-07-12 21:07:46.982  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; GET / => 200 
+2023-07-12 21:07:52.238  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; GET /Account/Logout => 302 
+2023-07-12 21:07:52.344  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; GET /login => 200 
+2023-07-12 21:08:09.185 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: DECLARE @__ToLower_0 varchar(200) = 'admin';
+
+SELECT [a].[AppRoleId], [a].[Avatar], [a].[BlockedBy], [a].[BlockedTo], [a].[Email], [a].[FullName], [a].[Id], [a].[PasswordHash], [a].[PhoneNumber1], CASE
+    WHEN [a0].[Id] IS NULL THEN N''
+    ELSE [a0].[Name]
+END, [a].[Username], [a0].[Id], [a1].[MstPermissionId], [a1].[Id]
+FROM [AppUser] AS [a]
+LEFT JOIN [AppRole] AS [a0] ON [a].[AppRoleId] = [a0].[Id]
+LEFT JOIN [AppRolePermission] AS [a1] ON [a0].[Id] = [a1].[AppRoleId]
+WHERE [a].[DeletedDate] IS NULL AND ([a].[Username] = @__ToLower_0)
+ORDER BY [a].[Id], [a0].[Id], [a1].[Id] 
+2023-07-12 21:08:09.625  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; POST /login => 302 
+2023-07-12 21:08:09.715  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET / => 200 
+2023-07-12 21:08:12.908 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[CreatedDate], [a].[Desc], [a].[Id], [a].[Name]
+FROM [AppRole] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-12 21:08:12.998  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /Role => 200 
+2023-07-12 21:08:15.944 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: DECLARE @__id_0 int = 1;
+
+SELECT [a].[Id], [a].[Name], [a].[Desc], [a0].[MstPermissionId], [a0].[Id]
+FROM [AppRole] AS [a]
+LEFT JOIN [AppRolePermission] AS [a0] ON [a].[Id] = [a0].[AppRoleId]
+WHERE [a].[DeletedDate] IS NULL AND ([a].[Id] = @__id_0)
+ORDER BY [a].[Id], [a0].[Id] 
+2023-07-12 21:08:16.006 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [m].[Id], [m].[Code], [m].[CreatedDate], [m].[DeletedDate], [m].[Desc], [m].[DisplayOrder], [m].[GroupName], [m].[Table]
+FROM [MstPermission] AS [m]
+WHERE [m].[DeletedDate] IS NULL
+ORDER BY [m].[DisplayOrder] DESC, [m].[Id] DESC 
+2023-07-12 21:08:16.098  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /Role/Edit/1 => 200 
+2023-07-12 21:08:31.052 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: DECLARE @__id_0 int = 1;
+
+SELECT [a].[Id], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[Desc], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppRole] AS [a]
+WHERE [a].[DeletedDate] IS NULL AND ([a].[Id] = @__id_0) 
+2023-07-12 21:08:31.082 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: DECLARE @__role_Id_0 int = 1;
+
+SELECT [a].[Id], [a].[AppRoleId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[MstPermissionId], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppRolePermission] AS [a]
+WHERE [a].[DeletedDate] IS NULL AND ([a].[AppRoleId] = @__role_Id_0)
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-12 21:08:31.338 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: DECLARE @__role_Id_0 int = 1;
+
+SELECT CONVERT(VARCHAR(11), [a].[Id])
+FROM [AppUser] AS [a]
+WHERE [a].[DeletedDate] IS NULL AND ([a].[AppRoleId] = @__role_Id_0)
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-12 21:08:31.360  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; POST /Role/Edit/1 => 302 
+2023-07-12 21:08:31.429  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /Account/Logout => 302 
+2023-07-12 21:08:31.514  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; GET /login => 200 
+2023-07-12 21:08:37.097 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: DECLARE @__ToLower_0 varchar(200) = 'admin';
+
+SELECT [a].[AppRoleId], [a].[Avatar], [a].[BlockedBy], [a].[BlockedTo], [a].[Email], [a].[FullName], [a].[Id], [a].[PasswordHash], [a].[PhoneNumber1], CASE
+    WHEN [a0].[Id] IS NULL THEN N''
+    ELSE [a0].[Name]
+END, [a].[Username], [a0].[Id], [a1].[MstPermissionId], [a1].[Id]
+FROM [AppUser] AS [a]
+LEFT JOIN [AppRole] AS [a0] ON [a].[AppRoleId] = [a0].[Id]
+LEFT JOIN [AppRolePermission] AS [a1] ON [a0].[Id] = [a1].[AppRoleId]
+WHERE [a].[DeletedDate] IS NULL AND ([a].[Username] = @__ToLower_0)
+ORDER BY [a].[Id], [a0].[Id], [a1].[Id] 
+2023-07-12 21:08:37.279  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; POST /login => 302 
+2023-07-12 21:08:37.354  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; GET /login => 200 
+2023-07-12 21:08:44.153 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: DECLARE @__ToLower_0 varchar(200) = 'admin';
+
+SELECT [a].[AppRoleId], [a].[Avatar], [a].[BlockedBy], [a].[BlockedTo], [a].[Email], [a].[FullName], [a].[Id], [a].[PasswordHash], [a].[PhoneNumber1], CASE
+    WHEN [a0].[Id] IS NULL THEN N''
+    ELSE [a0].[Name]
+END, [a].[Username], [a0].[Id], [a1].[MstPermissionId], [a1].[Id]
+FROM [AppUser] AS [a]
+LEFT JOIN [AppRole] AS [a0] ON [a].[AppRoleId] = [a0].[Id]
+LEFT JOIN [AppRolePermission] AS [a1] ON [a0].[Id] = [a1].[AppRoleId]
+WHERE [a].[DeletedDate] IS NULL AND ([a].[Username] = @__ToLower_0)
+ORDER BY [a].[Id], [a0].[Id], [a1].[Id] 
+2023-07-12 21:08:44.321  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; POST /login => 302 
+2023-07-12 21:08:44.403  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET / => 200 
+2023-07-12 21:08:47.454 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[CreatedDate], [a].[Desc], [a].[Id], [a].[Name]
+FROM [AppRole] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-12 21:08:47.485  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /Role => 200 
+2023-07-12 21:08:49.031 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: DECLARE @__id_0 int = 1;
+
+SELECT [a].[Id], [a].[Name], [a].[Desc], [a0].[MstPermissionId], [a0].[Id]
+FROM [AppRole] AS [a]
+LEFT JOIN [AppRolePermission] AS [a0] ON [a].[Id] = [a0].[AppRoleId]
+WHERE [a].[DeletedDate] IS NULL AND ([a].[Id] = @__id_0)
+ORDER BY [a].[Id], [a0].[Id] 
+2023-07-12 21:08:49.057 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [m].[Id], [m].[Code], [m].[CreatedDate], [m].[DeletedDate], [m].[Desc], [m].[DisplayOrder], [m].[GroupName], [m].[Table]
+FROM [MstPermission] AS [m]
+WHERE [m].[DeletedDate] IS NULL
+ORDER BY [m].[DisplayOrder] DESC, [m].[Id] DESC 
+2023-07-12 21:08:49.086  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /Role/Edit/1 => 200 
+2023-07-12 21:09:20.730 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: DECLARE @__id_0 int = 1;
+
+SELECT [a].[Id], [a].[Name], [a].[Desc], [a0].[MstPermissionId], [a0].[Id]
+FROM [AppRole] AS [a]
+LEFT JOIN [AppRolePermission] AS [a0] ON [a].[Id] = [a0].[AppRoleId]
+WHERE [a].[DeletedDate] IS NULL AND ([a].[Id] = @__id_0)
+ORDER BY [a].[Id], [a0].[Id] 
+2023-07-12 21:09:20.751 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [m].[Id], [m].[Code], [m].[CreatedDate], [m].[DeletedDate], [m].[Desc], [m].[DisplayOrder], [m].[GroupName], [m].[Table]
+FROM [MstPermission] AS [m]
+WHERE [m].[DeletedDate] IS NULL
+ORDER BY [m].[DisplayOrder] DESC, [m].[Id] DESC 
+2023-07-12 21:09:20.785  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /Role/Edit/1 => 200 
+2023-07-12 21:43:51.016  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Application started. Press Ctrl+C to shut down. 
+2023-07-12 21:43:51.096  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Hosting environment: Development 
+2023-07-12 21:43:51.102  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Content root path: D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Web 
+2023-07-12 21:43:51.780  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET / => 200 
+2023-07-12 21:43:54.850  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /Account/Logout => 302 
+2023-07-12 21:43:54.977  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; GET /login => 200 
+2023-07-12 21:44:00.114 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: DECLARE @__ToLower_0 varchar(200) = 'admin';
+
+SELECT [a].[AppRoleId], [a].[Avatar], [a].[BlockedBy], [a].[BlockedTo], [a].[Email], [a].[FullName], [a].[Id], [a].[PasswordHash], [a].[PhoneNumber1], CASE
+    WHEN [a0].[Id] IS NULL THEN N''
+    ELSE [a0].[Name]
+END, [a].[Username], [a0].[Id], [a1].[MstPermissionId], [a1].[Id]
+FROM [AppUser] AS [a]
+LEFT JOIN [AppRole] AS [a0] ON [a].[AppRoleId] = [a0].[Id]
+LEFT JOIN [AppRolePermission] AS [a1] ON [a0].[Id] = [a1].[AppRoleId]
+WHERE [a].[DeletedDate] IS NULL AND ([a].[Username] = @__ToLower_0)
+ORDER BY [a].[Id], [a0].[Id], [a1].[Id] 
+2023-07-12 21:44:00.605  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; POST /login => 302 
+2023-07-12 21:44:00.707  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET / => 200 
+2023-07-12 21:44:02.579 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[CreatedDate], [a].[Desc], [a].[Id], [a].[Name]
+FROM [AppRole] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-12 21:44:02.682  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /Role => 200 
+2023-07-12 21:44:03.906 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: DECLARE @__id_0 int = 1;
+
+SELECT [a].[Id], [a].[Name], [a].[Desc], [a0].[MstPermissionId], [a0].[Id]
+FROM [AppRole] AS [a]
+LEFT JOIN [AppRolePermission] AS [a0] ON [a].[Id] = [a0].[AppRoleId]
+WHERE [a].[DeletedDate] IS NULL AND ([a].[Id] = @__id_0)
+ORDER BY [a].[Id], [a0].[Id] 
+2023-07-12 21:44:03.975 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [m].[Id], [m].[Code], [m].[CreatedDate], [m].[DeletedDate], [m].[Desc], [m].[DisplayOrder], [m].[GroupName], [m].[Table]
+FROM [MstPermission] AS [m]
+WHERE [m].[DeletedDate] IS NULL
+ORDER BY [m].[DisplayOrder] DESC, [m].[Id] DESC 
+2023-07-12 21:44:04.051  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /Role/Edit/1 => 200 
+2023-07-12 21:44:08.986 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: DECLARE @__id_0 int = 1;
+
+SELECT [a].[Id], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[Desc], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppRole] AS [a]
+WHERE [a].[DeletedDate] IS NULL AND ([a].[Id] = @__id_0) 
+2023-07-12 21:44:09.014 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: DECLARE @__role_Id_0 int = 1;
+
+SELECT [a].[Id], [a].[AppRoleId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[MstPermissionId], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppRolePermission] AS [a]
+WHERE [a].[DeletedDate] IS NULL AND ([a].[AppRoleId] = @__role_Id_0)
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-12 21:44:09.238 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: DECLARE @__role_Id_0 int = 1;
+
+SELECT CONVERT(VARCHAR(11), [a].[Id])
+FROM [AppUser] AS [a]
+WHERE [a].[DeletedDate] IS NULL AND ([a].[AppRoleId] = @__role_Id_0)
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-12 21:44:09.257  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; POST /Role/Edit/1 => 302 
+2023-07-12 21:44:09.329  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /Account/Logout => 302 
+2023-07-12 21:44:09.408  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; GET /login => 200 
+2023-07-12 21:44:12.938 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: DECLARE @__ToLower_0 varchar(200) = 'admin';
+
+SELECT [a].[AppRoleId], [a].[Avatar], [a].[BlockedBy], [a].[BlockedTo], [a].[Email], [a].[FullName], [a].[Id], [a].[PasswordHash], [a].[PhoneNumber1], CASE
+    WHEN [a0].[Id] IS NULL THEN N''
+    ELSE [a0].[Name]
+END, [a].[Username], [a0].[Id], [a1].[MstPermissionId], [a1].[Id]
+FROM [AppUser] AS [a]
+LEFT JOIN [AppRole] AS [a0] ON [a].[AppRoleId] = [a0].[Id]
+LEFT JOIN [AppRolePermission] AS [a1] ON [a0].[Id] = [a1].[AppRoleId]
+WHERE [a].[DeletedDate] IS NULL AND ([a].[Username] = @__ToLower_0)
+ORDER BY [a].[Id], [a0].[Id], [a1].[Id] 
+2023-07-12 21:44:13.108  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; POST /login => 302 
+2023-07-12 21:44:13.198  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET / => 200 
+2023-07-12 21:44:14.619 DEBUG App.Web.Controllers.CompanyPatientController.MoveNext [117]: SELECT [a2].[CompanyId], [a3].[Name], [a2].[CreatedDate], [a2].[DeletedDate], [a2].[DepartmentId], [a4].[Name], [a2].[DigitalInfo], [a2].[DoB], [a2].[EmployeeCode], (
+    SELECT TOP(1) [a].[ExamDate]
+    FROM [AppCompanyPatientHistory] AS [a]
+    WHERE [a2].[Id] = [a].[CompanyPatientId]
+    ORDER BY [a].[Id] DESC), [a2].[FullName], [a2].[FullNameNoAccent], [a2].[Gender], [a2].[Id], [a2].[IdentityCode], [a2].[IdentityDoI], [a2].[IdentityPoI], [a2].[ImportDate], (
+    SELECT TOP(1) [a0].[IsDone]
+    FROM [AppCompanyPatientHistory] AS [a0]
+    WHERE [a2].[Id] = [a0].[CompanyPatientId]
+    ORDER BY [a0].[Id] DESC), (
+    SELECT TOP(1) [a1].[PrintCount]
+    FROM [AppCompanyPatientHistory] AS [a1]
+    WHERE [a2].[Id] = [a1].[CompanyPatientId]
+    ORDER BY [a1].[Id] DESC), [a2].[YoB], [a3].[Id], [a4].[Id], [a5].[Id], [a5].[BloodPressure], [a5].[Classification], [a5].[CompanyPatientId], [a5].[CreatedBy], [a5].[CreatedDate], [a5].[DeletedDate], [a5].[Dentomaxillofacial], [a5].[DisplayOrder], [a5].[ExamDate], [a5].[ExternalMedicine], [a5].[Height], [a5].[InternalMedicine], [a5].[IsDone], [a5].[Note], [a5].[Ophthalmology], [a5].[Otorhinolaryngology], [a5].[PrintCount], [a5].[Pulse], [a5].[Reason], [a5].[Test], [a5].[UpdatedBy], [a5].[UpdatedDate], [a5].[Weigth]
+FROM [AppCompanyPatient] AS [a2]
+LEFT JOIN [AppCompany] AS [a3] ON [a2].[CompanyId] = [a3].[Id]
+LEFT JOIN [AppCompanyDepartment] AS [a4] ON [a2].[DepartmentId] = [a4].[Id]
+LEFT JOIN [AppCompanyPatientHistory] AS [a5] ON [a2].[Id] = [a5].[CompanyPatientId]
+WHERE [a2].[DeletedDate] IS NULL
+ORDER BY [a2].[DisplayOrder] DESC, [a2].[Id] DESC, [a3].[Id], [a4].[Id], [a5].[Id] 
+2023-07-12 21:44:14.693 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-12 21:44:14.749 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-12 21:44:14.818 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-12 21:44:14.842 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-12 21:44:14.872 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-12 21:44:14.894 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-12 21:44:15.012  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /CompanyPatient => 200 
+2023-07-12 21:44:16.252 DEBUG App.Web.Controllers.CompanyPatientController.MoveNext [117]: SELECT [a2].[CompanyId], [a3].[Name], [a2].[CreatedDate], [a2].[DeletedDate], [a2].[DepartmentId], [a4].[Name], [a2].[DigitalInfo], [a2].[DoB], [a2].[EmployeeCode], (
+    SELECT TOP(1) [a].[ExamDate]
+    FROM [AppCompanyPatientHistory] AS [a]
+    WHERE [a2].[Id] = [a].[CompanyPatientId]
+    ORDER BY [a].[Id] DESC), [a2].[FullName], [a2].[FullNameNoAccent], [a2].[Gender], [a2].[Id], [a2].[IdentityCode], [a2].[IdentityDoI], [a2].[IdentityPoI], [a2].[ImportDate], (
+    SELECT TOP(1) [a0].[IsDone]
+    FROM [AppCompanyPatientHistory] AS [a0]
+    WHERE [a2].[Id] = [a0].[CompanyPatientId]
+    ORDER BY [a0].[Id] DESC), (
+    SELECT TOP(1) [a1].[PrintCount]
+    FROM [AppCompanyPatientHistory] AS [a1]
+    WHERE [a2].[Id] = [a1].[CompanyPatientId]
+    ORDER BY [a1].[Id] DESC), [a2].[YoB], [a3].[Id], [a4].[Id], [a5].[Id], [a5].[BloodPressure], [a5].[Classification], [a5].[CompanyPatientId], [a5].[CreatedBy], [a5].[CreatedDate], [a5].[DeletedDate], [a5].[Dentomaxillofacial], [a5].[DisplayOrder], [a5].[ExamDate], [a5].[ExternalMedicine], [a5].[Height], [a5].[InternalMedicine], [a5].[IsDone], [a5].[Note], [a5].[Ophthalmology], [a5].[Otorhinolaryngology], [a5].[PrintCount], [a5].[Pulse], [a5].[Reason], [a5].[Test], [a5].[UpdatedBy], [a5].[UpdatedDate], [a5].[Weigth]
+FROM [AppCompanyPatient] AS [a2]
+LEFT JOIN [AppCompany] AS [a3] ON [a2].[CompanyId] = [a3].[Id]
+LEFT JOIN [AppCompanyDepartment] AS [a4] ON [a2].[DepartmentId] = [a4].[Id]
+LEFT JOIN [AppCompanyPatientHistory] AS [a5] ON [a2].[Id] = [a5].[CompanyPatientId]
+WHERE [a2].[DeletedDate] IS NOT NULL
+ORDER BY [a2].[DisplayOrder] DESC, [a2].[Id] DESC, [a3].[Id], [a4].[Id], [a5].[Id] 
+2023-07-12 21:44:16.276 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-12 21:44:16.298 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-12 21:44:16.325  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /CompanyPatient/HidedPatient => 200 
+2023-07-12 21:44:22.103 DEBUG App.Web.Controllers.CompanyPatientController.MoveNext [117]: SELECT [a2].[CompanyId], [a3].[Name], [a2].[CreatedDate], [a2].[DeletedDate], [a2].[DepartmentId], [a4].[Name], [a2].[DigitalInfo], [a2].[DoB], [a2].[EmployeeCode], (
+    SELECT TOP(1) [a].[ExamDate]
+    FROM [AppCompanyPatientHistory] AS [a]
+    WHERE [a2].[Id] = [a].[CompanyPatientId]
+    ORDER BY [a].[Id] DESC), [a2].[FullName], [a2].[FullNameNoAccent], [a2].[Gender], [a2].[Id], [a2].[IdentityCode], [a2].[IdentityDoI], [a2].[IdentityPoI], [a2].[ImportDate], (
+    SELECT TOP(1) [a0].[IsDone]
+    FROM [AppCompanyPatientHistory] AS [a0]
+    WHERE [a2].[Id] = [a0].[CompanyPatientId]
+    ORDER BY [a0].[Id] DESC), (
+    SELECT TOP(1) [a1].[PrintCount]
+    FROM [AppCompanyPatientHistory] AS [a1]
+    WHERE [a2].[Id] = [a1].[CompanyPatientId]
+    ORDER BY [a1].[Id] DESC), [a2].[YoB], [a3].[Id], [a4].[Id], [a5].[Id], [a5].[BloodPressure], [a5].[Classification], [a5].[CompanyPatientId], [a5].[CreatedBy], [a5].[CreatedDate], [a5].[DeletedDate], [a5].[Dentomaxillofacial], [a5].[DisplayOrder], [a5].[ExamDate], [a5].[ExternalMedicine], [a5].[Height], [a5].[InternalMedicine], [a5].[IsDone], [a5].[Note], [a5].[Ophthalmology], [a5].[Otorhinolaryngology], [a5].[PrintCount], [a5].[Pulse], [a5].[Reason], [a5].[Test], [a5].[UpdatedBy], [a5].[UpdatedDate], [a5].[Weigth]
+FROM [AppCompanyPatient] AS [a2]
+LEFT JOIN [AppCompany] AS [a3] ON [a2].[CompanyId] = [a3].[Id]
+LEFT JOIN [AppCompanyDepartment] AS [a4] ON [a2].[DepartmentId] = [a4].[Id]
+LEFT JOIN [AppCompanyPatientHistory] AS [a5] ON [a2].[Id] = [a5].[CompanyPatientId]
+WHERE [a2].[DeletedDate] IS NULL
+ORDER BY [a2].[DisplayOrder] DESC, [a2].[Id] DESC, [a3].[Id], [a4].[Id], [a5].[Id] 
+2023-07-12 21:44:22.117 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-12 21:44:22.140 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-12 21:44:22.154 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-12 21:44:22.171 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-12 21:44:22.184 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-12 21:44:22.203 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-12 21:44:22.238  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /CompanyPatient => 200 

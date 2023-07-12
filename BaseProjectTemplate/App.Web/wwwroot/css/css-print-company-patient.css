@@ -1,0 +1,110 @@
+﻿.print-container {
+	display: none;
+}
+
+/* typical phone screen resolution */
+@media print {
+	.wrapper, .d-backdrop, .modal, .modal-backdrop {
+		display: none !important;
+	}
+	body.modal-open{
+		padding-right: 0px !important;
+	}
+	.print-container * {
+		padding: 0;
+		margin: 0;
+		font-family: 'Times New Roman', Times, serif;
+		font-size: 18pt;
+	}
+	.personal-info {
+		page-break-inside: auto;
+		page-break-after: always;
+	}
+	p{
+		padding-right: 20px!important;
+	}
+	.d1 {
+		overflow: hidden;
+		white-space: nowrap;
+		overflow: hidden !important;
+		text-overflow: unset;
+		max-width: 100%;
+	}
+	.d2 {
+		overflow: hidden;
+		height: 60pt;
+	}
+	.col-80 p {
+		max-width: 18cm!important;
+	}
+	.col-75 p {
+		max-width: 17.5cm !important;
+	}
+	.fs-13pt{
+		font-size: 18pt!important;
+	}
+	.fs-16pt {
+		font-size: 24pt !important;
+	}
+	.print-container {
+		display: block;
+		padding: 10px 30px;
+	}
+
+	.box-name .box-name-1 {
+		text-align: center;
+	}
+	th{
+		word-break:break-word;
+		padding-right: 0.2cm!important;
+	}
+
+		th, td {
+			padding-left: 10pt!important;
+			line-height: 24.5pt;
+		}
+
+	table,
+	th,
+	td {
+		border: 1.2pt solid black;
+	}
+	.cels {
+		display: inline-flex;
+	}
+	.cels > span{
+		display: block;
+		width: 16pt;
+		height: 16pt;
+		border: 1pt solid black;
+	}
+
+	@page {
+		size: A4;
+		margin: 1.5cm 2cm 1.4cm 2.4cm;
+		overflow: visible;
+	}
+	div {
+		page-break-inside: auto;
+	}
+	/* This is the key */
+	table {
+		page-break-inside: auto;
+		page-break-after: auto;
+	}
+
+	tr {
+		page-break-inside: auto;
+		page-break-after: auto;
+	}
+
+	td {
+		page-break-inside: auto;
+		page-break-after: auto
+	}
+
+	thead {
+		display: table-header-group
+	}
+
+}

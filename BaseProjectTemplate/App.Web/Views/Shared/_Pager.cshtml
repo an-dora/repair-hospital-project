@@ -1,0 +1,26 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
+
+@model IPagedList
+
+@{
+	string _params = "";
+	foreach (var item in Context.Request.Query)
+	{
+		if (item.Key != "page")
+		{
+			_params += $"&{item.Key}={item.Value}";
+		}
+	}
+}
+<div class="my-4">
+@Html.PagedListPager(Model,
+	page => Url.Action("Index", new { page = page }) + _params,
+	new PagedListRenderOptions
+	{
+		LiElementClasses = new string[] { "page-item" },
+		PageClasses = new string[] { "page-link" },
+	})
+	<small class="d-block mt-2 font-italic">Danh sách này có tổng cộng @Model.TotalItemCount bản ghi</small>
+</div>

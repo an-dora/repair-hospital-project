@@ -1,0 +1,57 @@
+﻿@model App.Web.ViewModels.Company.CompanyAddOrEditVM
+
+@{
+	ViewData["Title"] = "Thêm thông tin công ty";
+}
+
+<form asp-action="Create">
+	<div class="row">
+		<div class="col-md-12">
+			<h5 class="my-3">Thông tin công ty</h5>
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="row">
+				<div class="col-md-10">
+					<div class="form-group">
+						<label asp-for="Name" class="control-label">Tên công ty</label>
+						<input asp-for="Name" class="form-control" />
+						<span asp-validation-for="Name" class="text-danger"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 my-3">
+			<h5>Thông tin phòng ban</h5>
+		</div>
+		<div class="col-12 js-department">
+			@*Template được đặt vào đây*@
+		</div>
+	</div>
+	<div class="row mt-2">
+		<div class="col">
+			<div class="form-group">
+				<button type="button" id="js-btn-save" class="btn btn-success"><i class="fa fa-save"></i> Lưu</button>
+				<button type="reset" class="btn btn-default"><i class="fa fa-undo"></i> Nhập lại</button>
+			</div>
+		</div>
+	</div>
+</form>
+
+<script type="text/html" id="department-tmpl">
+	<div class="row js-department-row">
+		<div class="col-8 my-2 js-department-col form-group">
+			<label class="control-label">Tên phòng ban</label>
+			<input class="form-control js-department-input" maxlength="150" />
+		</div>
+		<div class="col-4 my-2 form-group">
+			<label class="d-block">&nbsp;</label>
+			<button type="button" class="btn btn-success js-department-add"><i class="fa fa-plus-circle"></i></button>
+			<button type="button" class="btn btn-outline-secondary js-department-del"><i class="fa fa-minus"></i></button>
+		</div>
+	</div>
+</script>
+
+<partial name="_BackToList" />
+
+@section scripts {
+	<script src="~/js/company/create-edit-company.js" asp-append-version="true"></script>
+}

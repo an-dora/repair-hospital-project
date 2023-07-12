@@ -1,0 +1,92 @@
+﻿@model App.Web.ViewModels.PatientHistory.PatientHistoryVM
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<input asp-for="Id" type="hidden" />
+<input asp-for="CompanyPatientId" type="hidden" />
+<div class="row">
+	<div class="form-group col">
+		<label asp-for="Height" class="control-label">Chiều cao (cm)</label>
+		<input asp-for="Height" class="form-control" />
+		<span asp-validation-for="Height" class="text-danger"></span>
+	</div>
+	<div class="form-group col">
+		<label asp-for="Weigth" class="control-label">Cân nặng (kg)</label>
+		<input asp-for="Weigth" class="form-control" />
+		<span asp-validation-for="Weigth" class="text-danger"></span>
+	</div>
+	<div class="form-group col">
+		<label asp-for="ExamDate" class="control-label">Ngày khám</label>
+		<input asp-for="ExamDate" class="form-control" type="date" />
+		<span asp-validation-for="ExamDate" class="text-danger"></span>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col">
+		<label asp-for="Pulse" class="control-label">Mạch (lần/phút)</label>
+		<input asp-for="Pulse" class="form-control" />
+		<span asp-validation-for="Pulse" class="text-danger"></span>
+	</div>
+	<div class="form-group col">
+		<label asp-for="BloodPressure" class="control-label">Huyết áp (mmHg)</label>
+		<input asp-for="BloodPressure" class="form-control" />
+		<span asp-validation-for="BloodPressure" class="text-danger"></span>
+	</div>
+	<div class="form-group col">
+		<label asp-for="InternalMedicine" class="control-label">Nội</label>
+		<input asp-for="InternalMedicine" class="form-control" />
+		<span asp-validation-for="InternalMedicine" class="text-danger"></span>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col">
+		<label asp-for="ExternalMedicine" class="control-label">Ngoại</label>
+		<input asp-for="ExternalMedicine" class="form-control" />
+		<span asp-validation-for="ExternalMedicine" class="text-danger"></span>
+	</div>
+	<div class="form-group col">
+		<label asp-for="Ophthalmology" class="control-label">Mắt</label>
+		<input asp-for="Ophthalmology" class="form-control" />
+		<span asp-validation-for="Ophthalmology" class="text-danger"></span>
+	</div>
+	<div class="form-group col">
+		<label asp-for="Otorhinolaryngology" class="control-label">Tai mũi họng</label>
+		<input asp-for="Otorhinolaryngology" class="form-control" />
+		<span asp-validation-for="Otorhinolaryngology" class="text-danger"></span>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col">
+		<label asp-for="Dentomaxillofacial" class="control-label">Răng hàm mặt</label>
+		<input asp-for="Dentomaxillofacial" class="form-control" />
+		<span asp-validation-for="Dentomaxillofacial" class="text-danger"></span>
+	</div>
+	<div class="form-group col">
+		<label asp-for="Test" class="control-label">Xét nghiệm</label>
+		<input asp-for="Test" class="form-control" />
+		<span asp-validation-for="Test" class="text-danger"></span>
+	</div>
+	<div class="form-group col">
+		<label asp-for="Classification" class="control-label">Xếp loại</label>
+		<select asp-for="Classification" class="form-control js-select-add-company">
+			<option value="">--- Chọn loại ---</option>
+			<partial name="_OptionClassification" />
+		</select>
+		<span asp-validation-for="Classification" class="text-danger"></span>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col">
+		<label asp-for="Reason" class="control-label">Lí do khám</label>
+		<textarea asp-for="Reason" class="form-control"></textarea>
+		<span asp-validation-for="Reason" class="text-danger"></span>
+	</div>
+	<div class="form-group col">
+		<label asp-for="Note" class="control-label">Ghi chú</label>
+		<textarea asp-for="Note" class="form-control"></textarea>
+		<span asp-validation-for="Note" class="text-danger"></span>
+	</div>
+</div>

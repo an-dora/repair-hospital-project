@@ -1,0 +1,62 @@
+﻿.required:after {
+  content: ' *';
+  color: red; }
+
+.fit {
+  width: 1%;
+  white-space: nowrap; }
+
+.fake-d-none, .fake-d-none-inline {
+    display: block !important;
+    width: 0;
+    height: 0;
+    padding: 0 !important;
+    border: 0 !important;
+}
+.fake-d-none-inline {
+    display: inline-block !important;
+}
+
+.hover\:pointer:hover {
+    cursor: pointer;
+}
+
+.hover\:text-primary {
+  transition: color 0.3s; }
+  .hover\:text-primary:hover {
+    color: var(--primary); }
+
+.d-backdrop {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background-color: rgb(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.d-bg-grey {
+    background-color: rgba(0,0,0,.075) !important;
+}
+
+.toggle-chk:checked ~ .toggle-off,
+.toggle-chk ~ .toggle-on,
+.toggle-chk ~ .toggle-on-inline {
+    display: none !important;
+}
+.toggle-chk:checked ~ .toggle-on-inline {
+    display: inline-block !important;
+}
+.toggle-chk:checked ~ .toggle-on,
+.toggle-chk ~ .toggle-off {
+    display: block !important;
+}
+
+.app-loading {
+    padding-right: 15px!important;
+    overflow: hidden;
+}

@@ -1,0 +1,71 @@
+﻿@model IEnumerable<App.Web.ViewModels.Company.CompanyListItemVM>
+
+@{
+	ViewData["Title"] = "Danh sách công ty";
+}
+@if (User.IsInPermission(AuthConst.AppCompany.CREATE))
+{
+	<div class="my-2">
+		<a asp-action="Create" class="btn btn-primary">
+			<i class="fas fa-plus-circle"></i> &nbsp; Thêm công ty
+		</a>
+	</div>
+}
+
+<div class="table-responsive">
+	<table class="table table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Tên công ty</th>
+				<th>SL phòng ban</th>
+				<th>Ngày tạo</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr class="@(item.IsHidden ? "d-bg-grey" : "")">
+					<td class="fit">@item.RowIndex</td>
+					<td>@Html.DisplayFor(modelItem => item.Name)</td>
+					<td>@Html.DisplayFor(modelItem => item.DepartmentCount) (@item.DepartmentHiddenCount bị ẩn)</td>
+					<td class="fit">@item.CreatedDate.ToDMYHM()</td>
+					<td class="fit">
+						@if (User.IsInPermission(AuthConst.AppCompany.UPDATE))
+						{
+							@if (item.IsHidden)
+							{
+								<a href="#"
+								   class="btn btn-outline-secondary btn-sm invisible"><i class="fa fas fa-pen"></i></a>
+							}
+							else
+							{
+								<a asp-action="Edit" asp-route-id="@item.Id"
+								   class="btn btn-outline-secondary btn-sm"><i class="fa fas fa-pen"></i></a>
+							}
+						}
+						@if (item.IsHidden)
+						{
+							if (User.IsInPermission(AuthConst.AppCompany.UNHIDE))
+							{
+								<a asp-action="UnHide" asp-route-id="@item.Id"
+								   class="btn btn-outline-secondary btn-sm" title="Hiện công ty"><i class="fas fa-eye"></i></a>
+							}
+						}
+						else
+						{
+							if (User.IsInPermission(AuthConst.AppCompany.HIDE))
+							{
+								<a asp-action="Hide" asp-route-id="@item.Id"
+								   class="btn btn-outline-secondary btn-sm" title="Ẩn công ty"><i class="fas fa-eye-slash"></i></a>
+							}
+						}
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
+
+<partial name="_Pager" />

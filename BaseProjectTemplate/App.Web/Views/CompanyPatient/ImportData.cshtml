@@ -1,0 +1,65 @@
+﻿@model App.Web.ViewModels.CompanyPatient.ImportData
+
+@{
+	ViewData["Title"] = "Nhập dữ liệu qua file excel";
+}
+@section scripts{
+	<script src="~/lib/bootstrap/dist/js/bootstrap-custom-file-input.min.js"></script>
+	<script src="~/js/company-patient/import-excel.js" asp-append-version="true"></script>
+}
+
+<form asp-action="ImportData" enctype="multipart/form-data">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+				<label asp-for="FileExcel" class="control-label">File</label>
+				<div class="custom-file">
+					<input asp-for="FileExcel" class="custom-file-input" accept=".xlsx" />
+					<label for="FileExcel" class="custom-file-label">Chọn file import</label>
+				</div>
+				<span asp-validation-for="FileExcel" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="CompanyId" class="control-label">Chọn công ty</label>
+				<select asp-for="CompanyId" class="form-control bs-autocomplete">
+					<vc:list-company seleteted-id="Model.CompanyId"></vc:list-company>
+				</select>
+				<span asp-validation-for="CompanyId" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="BaseRow" class="control-label">Bắt đầu nhập dữ liệu từ dòng</label>
+				<input asp-for="BaseRow" class="form-control" />
+				<span asp-validation-for="BaseRow" class="text-danger"></span>
+				<small>Thường bắt đầu từ dòng 2, trường hợp file excel có thay đổi mẫu thì hãy thay đổi dòng này</small>
+			</div>
+			<div class="form-group">
+				<label class="d-block font-weight-normal">
+					<input asp-for="IsAutoCreateDepartment" />
+					Cho phép tự động thêm phòng ban nếu chưa tồn tại trong hệ thống
+				</label>
+			</div>
+			<div class="form-group">
+				<label class="d-block font-weight-normal">
+					<input asp-for="IsLimit500Rows" />
+					Giới hạn 500 dòng dữ liệu
+				</label>
+				<small>Để đảm bảo độ ổn định của hệ thống chúng tôi đề xuất không nhập quá 500 dòng dữ liệu. Tuy nhiên nếu hệ thống đủ mạnh hoặc bạn cho rằng số dòng dữ liệu bị tính sai thì có thể tắt chức năng này</small>
+
+			</div>
+			<div class="form-group d-flex">
+				<button type="button" class="btn btn-success js-btn-import"><i class="fa fa-file-excel"></i> &nbsp; Thực hiện</button>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<p class="mt-4">
+				Đảm bảo dữ liệu import được sắp xếp theo đúng thứ tự và format như file mẫu dưới đây. Lưu ý rằng hệ thống chỉ chấp nhận file <b>.xlsx</b>
+			</p>
+			<p>
+				Tải về file mẫu:
+				<a href="~/template/template_import_excel_phongkham274.xlsx">template_import_excel_phongkham274.xlsx</a>
+			</p>
+		</div>
+	</div>
+</form>
+
+<partial name="_BackToList" />

@@ -1,0 +1,337 @@
+﻿@using App.Web.ViewModels.CompanyPatient
+@model App.Web.ViewModels.CompanyPatient.PatientIndexVM
+@using App.Web.ViewModels.PatientHistory
+
+@{
+	ViewData["Title"] = "Danh sách bệnh nhân";
+}
+@section head{
+	<link href="~/css/css-print-company-patient.css" rel="stylesheet" asp-append-version="true" />
+}
+@section scripts {
+	<script src="~/lib/mustachejs/mustache.js"></script>
+	<script src="~/js/company-patient/index.js" asp-append-version="true"></script>
+}
+@if (User.IsInPermission(AuthConst.AppCompanyPatient.PRINT_HEALTH_CERT))
+{
+	@section print{
+		<div id="print-area"></div>
+		<textarea id="print-template" class="d-none">
+		<partial name="_PrintHealthCert" />
+	</textarea>
+	}
+}
+
+
+<div class="my-2 row">
+	<div class="col-md-6">
+		@if (User.IsInPermission(AuthConst.AppCompanyPatient.CREATE))
+		{
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAddPatient">
+				<i class="fas fa-plus-circle"></i> &nbsp; Thêm người khám
+			</button>
+		}
+		@if (User.IsInPermission(AuthConst.AppCompanyPatient.IMPORT_EXCEL))
+		{
+			<a class="btn btn-success ml-1" asp-action="ImportData">
+				<i class="fas fa-file-excel"></i> &nbsp; Import Data
+			</a>
+		}
+	</div>
+
+	<div class="col-md-6 text-right">
+		@if (User.IsInPermission(AuthConst.AppCompanyPatient.EXPORT_EXCEL))
+		{
+			<a class="btn btn-default ml-1 js-tooltip js-export-data" asp-action="ExportData" asp-controller="CompanyPatientExcel"
+			   data-toggle="tooltip" data-placement="top" title="Xuất quả tìm kiếm thành file Excel">
+				<i class="fas fa-file-excel"></i> &nbsp; Xuất file excel
+			</a>
+		}
+		@if (User.IsInPermission(AuthConst.AppCompanyPatient.HIDE))
+		{
+			<a class="btn btn-link ml-1" asp-action="HidedPatient">
+				<i class="fas fa-eye-slash"></i> &nbsp; Danh sách bị ẩn
+			</a>
+		}
+	</div>
+</div>
+
+<partial name="_FormSearch" model="Model.Search" />
+
+<div class="table-responsive">
+	<table class="table table-bordered table-hover mb-3 mt-4">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Mã NV</th>
+				<th>Tên</th>
+				<th>Thông tin</th>
+				<th>Ngày tạo</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model.Patients)
+			{
+				var getPatientUrl = Url.Action("GetCompanyPatient", new { Id = item.Id });
+				var getPatientHistoryUrl = Url.Action("GetPatientHistory", new { Id = item.Id, IsDone = item.IsLastHistoryDone });
+
+				<tr data-id="@item.Id">
+					<td class="fit">@item.RowIndex</td>
+					<td class="fit">@item.EmployeeCode</td>
+					<td>
+						@item.FullName
+						@Html.CheckBox("IsLastHistoryDone_1_" + item.Id, item.IsLastHistoryDone, new { @class = "fake-d-none-inline toggle-chk" })
+
+						<span class="toggle-on-inline ml-1 js-tooltip text-secondary" data-toggle="tooltip" data-placement="top"
+							  title="Đã có kết quả khám">
+							<i class="fas fa-clipboard-check"></i>
+						</span>
+					</td>
+					<td>
+						Cty: @item.CompanyName
+						@if (!item.DepartmentName.IsNullOrEmpty())
+						{
+							<span>, phòng ban: @item.DepartmentName</span>
+						}
+					</td>
+					<td class="fit">@item.CreatedDate.ToDMYHM()</td>
+					<td class="fit">
+						<div class="dropdown">
+							<a class="btn btn-outline-secondary btn-sm" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+								<i class="fas fa-ellipsis-h"></i>
+							</a>
+							<div class="dropdown-menu">
+								@if (User.IsInPermission(AuthConst.AppCompanyPatient.PRINT_HEALTH_CERT))
+								{
+									<a class="dropdown-item js-print-health-cert" href="@getPatientUrl">
+										<i class="fa fa-fw fa-print"></i> In phiếu khám
+									</a>
+								}
+								@if (User.IsInPermission(AuthConst.AppCompanyPatient.UPDATE))
+								{
+									<a asp-action="Edit" asp-route-id="@item.Id" data-url="@getPatientUrl"
+									   class="dropdown-item js-edit-patient">
+										<i class="fa fa-fw fa-pen"></i> Sửa thông tin
+									</a>
+								}
+								@if (item.IsLastHistoryDone.HasValue)
+								{
+
+									@Html.CheckBox("IsLastHistoryDone_2_" + item.Id, item.IsLastHistoryDone, new { @class = "fake-d-none toggle-chk" })
+									@if (User.IsInPermission(AuthConst.AppCompanyPatientHistory.INPUT_RESULT))
+									{
+										<a asp-action="InputResult" asp-route-id="@item.Id" data-url="@getPatientHistoryUrl"
+										   class="dropdown-item js-input-result toggle-off">
+											<i class="fa fa-fw fa-file-medical"></i> Nhập kết quả khám
+										</a>
+									}
+									@if (User.IsInPermission(AuthConst.AppCompanyPatientHistory.UPDATE_RESULT))
+									{
+										<a asp-action="UpdateResult" asp-route-id="@item.Id" data-url="@getPatientHistoryUrl"
+										   class="dropdown-item js-update-result toggle-on">
+											<i class="fa fa-fw fa-file-medical"></i> Sửa kết quả khám
+										</a>
+									}
+								}
+								else
+								{
+									<button class="dropdown-item bg-danger disabled">
+										<i class="fa fa-fw fa-exclamation-triangle"></i> Lỗi lịch sử khám!
+									</button>
+								}
+								@if (User.IsInPermission(AuthConst.AppCompanyPatientHistory.VIEW_RESULT))
+								{
+									<a asp-action="ViewResult" asp-route-id="@item.Id"
+									   class="dropdown-item js-view-result">
+										<i class="fa fa-fw fa-notes-medical"></i> Xem kết quả khám
+									</a>
+								}
+								@if (User.IsInPermission(AuthConst.AppCompanyPatient.HIDE))
+								{
+									<a asp-action="Hide" asp-route-id="@item.Id"
+									   class="dropdown-item js-delete-confirm"
+									   data-msg="Xác nhận ẩn thông tin của [@item.FullName]? Người dùng khác có thể sẽ không nhìn thấy hay thao tác được với thông tin này.">
+										<i class="fa fa-fw fa-eye-slash"></i> Ẩn người này
+									</a>
+								}
+							</div>
+						</div>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+
+	<partial name="_Pager" model="Model.Patients" />
+</div>
+
+
+@if (User.IsInPermission(AuthConst.AppCompanyPatient.CREATE))
+{
+	<!-- Modal thêm mới -->
+	<div class="modal fade" id="modalAddPatient" tabindex="-1" role="dialog" aria-labelledby="modalAddPatientLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modalAddPatientTitle">Thêm người khám</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12">
+							<form asp-action="Create">
+								<partial name="_AddOrEdit" model="new PatientAddOrEditVM()" />
+
+								<div class="form-group mt-3 d-flex justify-content-end">
+									<button type="submit" class="btn btn-success js-btn-save"><i class="fa fa-save"></i> Lưu</button>
+									&nbsp;
+									<button type="reset" class="btn btn-default"><i class="fa fa-undo"></i> Nhập lại</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+}
+
+@if (User.IsInPermission(AuthConst.AppCompanyPatient.UPDATE))
+{
+	<!-- Modal chỉnh sửa-->
+	<div class="modal fade" id="modal-EditPatient" tabindex="-1" role="dialog" aria-labelledby="modal-EditPatientLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modal-EditPatientTitle">Chỉnh sửa người khám</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12">
+							@*Action được tạo bởi js*@
+							<form method="post" asp-action="Edit">
+								<partial name="_AddOrEdit" model="new PatientAddOrEditVM()" />
+
+								<div class="form-group mt-3 d-flex justify-content-end">
+									<button type="submit" class="btn btn-info js-btn-update"><i class="fa fa-save"></i> &nbsp;&nbsp;Cập nhật&nbsp;&nbsp;</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+}
+
+@if (User.IsInPermission(AuthConst.AppCompanyPatientHistory.INPUT_RESULT))
+{
+	<!-- Modal nhập lịch sử khám-->
+	<div class="modal fade" id="modal-InputPatientHistory" tabindex="-1" role="dialog" aria-labelledby="modal-InputPatientHistoryLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modal-InputPatientHistoryTitle">Nhập kết quả khám cho [<span></span>]</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12">
+							@*Action được tạo bởi js*@
+							<form method="post" asp-action="UpdatePatientHistory">
+								<partial name="_UpdatePatientHistory" model="new PatientHistoryVM()" />
+
+								<div class="form-group mt-3 d-flex justify-content-end">
+									<button type="button" class="btn btn-info js-submit-input-history"><i class="fa fa-save"></i> &nbsp;&nbsp;Cập nhật&nbsp;&nbsp;</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+}
+
+@if (User.IsInPermission(AuthConst.AppCompanyPatientHistory.UPDATE_RESULT))
+{
+	<!-- Modal cập nhật lịch sử khám-->
+	<div class="modal fade" id="modal-UpdatePatientHistory" tabindex="-1" role="dialog" aria-labelledby="modal-UpdatePatientHistoryLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modal-UpdatePatientHistoryTitle">Sửa kết quả khám cho [<span></span>]</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12">
+							@*Action được tạo bởi js*@
+							<form method="post" asp-action="UpdateLastPatientHistory">
+								<partial name="_UpdatePatientHistory" model="new PatientHistoryVM()" />
+
+								<div class="form-group mt-3 d-flex justify-content-end">
+									<button type="button" class="btn btn-info js-submit-update-history"><i class="fa fa-save"></i> &nbsp;&nbsp;Cập nhật&nbsp;&nbsp;</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+}
+
+@if (User.IsInPermission(AuthConst.AppCompanyPatientHistory.VIEW_RESULT))
+{
+	<!-- Modal xem lịch sử khám-->
+	<div class="modal fade" id="modal-ListPatientHistory" tabindex="-1" role="dialog" aria-labelledby="modal-ListPatientHistoryLabel" aria-hidden="true">
+		<div class="modal-dialog modal-f" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modal-ListPatientHistoryTitle">Kết quả khám của [<span></span>]</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12">
+							<table class="table table-bordered table-hover mb-3 mt-4">
+								<thead class="thead-light">
+									<tr>
+										<th>#</th>
+										<th>Ngày khám</th>
+										<th>Chiều cao (cm)</th>
+										<th>Cân nặng (kg)</th>
+										<th>Huyết áp</th>
+										<th>Nội</th>
+										<th>Ngoại</th>
+										<th>Mắt</th>
+										<th>TMH</th>
+										<th>RHM</th>
+										<th>Xét nghiệm</th>
+										<th>Xếp loại</th>
+										<th>Ghi chú</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+}

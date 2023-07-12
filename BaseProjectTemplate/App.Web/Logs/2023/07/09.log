@@ -1,0 +1,843 @@
+2023-07-09 20:02:24.961  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Application started. Press Ctrl+C to shut down. 
+2023-07-09 20:02:25.064  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Hosting environment: Development 
+2023-07-09 20:02:25.073  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Content root path: D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Web 
+2023-07-09 20:02:26.212  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; GET / => 200 
+2023-07-09 20:02:36.502  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; GET /Account/Logout => 302 
+2023-07-09 20:02:36.640  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; GET /login => 200 
+2023-07-09 20:02:42.668 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: DECLARE @__ToLower_0 varchar(200) = 'admin';
+
+SELECT [a].[Avatar], [a].[BlockedBy], [a].[BlockedTo], [a].[Email], [a].[FullName], [a].[Id], [a].[PasswordHash], [a].[PasswordSalt], [a].[PhoneNumber1], CASE
+    WHEN [a0].[Id] IS NULL THEN N''
+    ELSE [a0].[Name]
+END, [a].[Username], [a0].[Id], [a1].[MstPermissionId], [a1].[Id]
+FROM [AppUser] AS [a]
+LEFT JOIN [AppRole] AS [a0] ON [a].[AppRoleId] = [a0].[Id]
+LEFT JOIN [AppRolePermission] AS [a1] ON [a0].[Id] = [a1].[AppRoleId]
+WHERE [a].[DeletedDate] IS NULL AND ([a].[Username] = @__ToLower_0)
+ORDER BY [a].[Id], [a0].[Id], [a1].[Id] 
+2023-07-09 20:02:43.104  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: ANONYMOUS_USER; POST /login => 302 
+2023-07-09 20:02:43.214  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET / => 200 
+2023-07-09 20:02:48.015 DEBUG App.Web.Controllers.CompanyPatientController.MoveNext [112]: SELECT [a2].[CompanyId], [a3].[Name], [a2].[CreatedDate], [a2].[DeletedDate], [a2].[DepartmentId], [a4].[Name], [a2].[DigitalInfo], [a2].[DoB], [a2].[EmployeeCode], (
+    SELECT TOP(1) [a].[ExamDate]
+    FROM [AppCompanyPatientHistory] AS [a]
+    WHERE [a2].[Id] = [a].[CompanyPatientId]
+    ORDER BY [a].[Id] DESC), [a2].[FullName], [a2].[FullNameNoAccent], [a2].[Gender], [a2].[Id], [a2].[IdentityCode], [a2].[IdentityDoI], [a2].[IdentityPoI], [a2].[ImportDate], (
+    SELECT TOP(1) [a0].[IsDone]
+    FROM [AppCompanyPatientHistory] AS [a0]
+    WHERE [a2].[Id] = [a0].[CompanyPatientId]
+    ORDER BY [a0].[Id] DESC), (
+    SELECT TOP(1) [a1].[PrintCount]
+    FROM [AppCompanyPatientHistory] AS [a1]
+    WHERE [a2].[Id] = [a1].[CompanyPatientId]
+    ORDER BY [a1].[Id] DESC), [a2].[YoB], [a3].[Id], [a4].[Id], [a5].[Id], [a5].[BloodPressure], [a5].[Classification], [a5].[CompanyPatientId], [a5].[CreatedBy], [a5].[CreatedDate], [a5].[DeletedDate], [a5].[Dentomaxillofacial], [a5].[DisplayOrder], [a5].[ExamDate], [a5].[ExternalMedicine], [a5].[Height], [a5].[InternalMedicine], [a5].[IsDone], [a5].[Note], [a5].[Ophthalmology], [a5].[Otorhinolaryngology], [a5].[PrintCount], [a5].[Pulse], [a5].[Reason], [a5].[Test], [a5].[UpdatedBy], [a5].[UpdatedDate], [a5].[Weigth]
+FROM [AppCompanyPatient] AS [a2]
+LEFT JOIN [AppCompany] AS [a3] ON [a2].[CompanyId] = [a3].[Id]
+LEFT JOIN [AppCompanyDepartment] AS [a4] ON [a2].[DepartmentId] = [a4].[Id]
+LEFT JOIN [AppCompanyPatientHistory] AS [a5] ON [a2].[Id] = [a5].[CompanyPatientId]
+WHERE [a2].[DeletedDate] IS NULL
+ORDER BY [a2].[DisplayOrder] DESC, [a2].[Id] DESC, [a3].[Id], [a4].[Id], [a5].[Id] 
+2023-07-09 20:02:48.201 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:02:48.275 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:02:48.411 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:02:48.437 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:02:48.469 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:02:48.490 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:02:48.648  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /CompanyPatient => 200 
+2023-07-09 20:05:14.063 DEBUG App.Web.Controllers.CompanyPatientController.MoveNext [112]: SELECT [a2].[CompanyId], [a3].[Name], [a2].[CreatedDate], [a2].[DeletedDate], [a2].[DepartmentId], [a4].[Name], [a2].[DigitalInfo], [a2].[DoB], [a2].[EmployeeCode], (
+    SELECT TOP(1) [a].[ExamDate]
+    FROM [AppCompanyPatientHistory] AS [a]
+    WHERE [a2].[Id] = [a].[CompanyPatientId]
+    ORDER BY [a].[Id] DESC), [a2].[FullName], [a2].[FullNameNoAccent], [a2].[Gender], [a2].[Id], [a2].[IdentityCode], [a2].[IdentityDoI], [a2].[IdentityPoI], [a2].[ImportDate], (
+    SELECT TOP(1) [a0].[IsDone]
+    FROM [AppCompanyPatientHistory] AS [a0]
+    WHERE [a2].[Id] = [a0].[CompanyPatientId]
+    ORDER BY [a0].[Id] DESC), (
+    SELECT TOP(1) [a1].[PrintCount]
+    FROM [AppCompanyPatientHistory] AS [a1]
+    WHERE [a2].[Id] = [a1].[CompanyPatientId]
+    ORDER BY [a1].[Id] DESC), [a2].[YoB], [a3].[Id], [a4].[Id], [a5].[Id], [a5].[BloodPressure], [a5].[Classification], [a5].[CompanyPatientId], [a5].[CreatedBy], [a5].[CreatedDate], [a5].[DeletedDate], [a5].[Dentomaxillofacial], [a5].[DisplayOrder], [a5].[ExamDate], [a5].[ExternalMedicine], [a5].[Height], [a5].[InternalMedicine], [a5].[IsDone], [a5].[Note], [a5].[Ophthalmology], [a5].[Otorhinolaryngology], [a5].[PrintCount], [a5].[Pulse], [a5].[Reason], [a5].[Test], [a5].[UpdatedBy], [a5].[UpdatedDate], [a5].[Weigth]
+FROM [AppCompanyPatient] AS [a2]
+LEFT JOIN [AppCompany] AS [a3] ON [a2].[CompanyId] = [a3].[Id]
+LEFT JOIN [AppCompanyDepartment] AS [a4] ON [a2].[DepartmentId] = [a4].[Id]
+LEFT JOIN [AppCompanyPatientHistory] AS [a5] ON [a2].[Id] = [a5].[CompanyPatientId]
+WHERE [a2].[DeletedDate] IS NULL
+ORDER BY [a2].[DisplayOrder] DESC, [a2].[Id] DESC, [a3].[Id], [a4].[Id], [a5].[Id] 
+2023-07-09 20:05:26.875  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [30]: USER_ID: 1, USERNAME: admin; GET /CompanyPatient => 200 
+2023-07-09 20:05:26.907 ERROR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.? [?]: An unhandled exception has occurred while executing the request. Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.CompilationFailedException: One or more compilation failures occurred:
+D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Web\Views\CompanyPatient\Index.cshtml(250,68): error CS0246: The type or namespace name 'PatientHistoryVM' could not be found (are you missing a using directive or an assembly reference?)
+D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Web\Views\CompanyPatient\Index.cshtml(281,68): error CS0246: The type or namespace name 'PatientHistoryVM' could not be found (are you missing a using directive or an assembly reference?)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RuntimeViewCompiler.CompileAndEmit(RazorCodeDocument codeDocument, String generatedCode)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RuntimeViewCompiler.CompileAndEmit(String relativePath)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RuntimeViewCompiler.OnCacheMiss(String normalizedPath)
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultRazorPageFactoryProvider.CreateFactory(String relativePath)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.CreateCacheResult(HashSet`1 expirationTokens, String relativePath, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.OnCacheMiss(ViewLocationExpanderContext expanderContext, ViewLocationCacheKey cacheKey)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.LocatePageFromViewLocations(ActionContext actionContext, String pageName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewEngines.CompositeViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.FindView(ActionContext actionContext, ViewResult viewResult)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at App.Web.WebConfig.Middlewares.AppLoggingMiddleware.Invoke(HttpContext context) in D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Web\WebConfig\Middlewares\AppLoggingMiddleware.cs:line 30
+   at Microsoft.AspNetCore.Authorization.Policy.AuthorizationMiddlewareResultHandler.HandleAsync(RequestDelegate next, HttpContext context, AuthorizationPolicy policy, PolicyAuthorizationResult authorizeResult)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+
+2023-07-09 20:05:41.565  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Application started. Press Ctrl+C to shut down. 
+2023-07-09 20:05:41.626  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Hosting environment: Development 
+2023-07-09 20:05:41.637  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Content root path: D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Web 
+2023-07-09 20:05:42.326  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET / => 200 
+2023-07-09 20:05:54.364  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET / => 200 
+2023-07-09 20:05:58.039 DEBUG App.Web.Controllers.CompanyPatientController.MoveNext [112]: SELECT [a2].[CompanyId], [a3].[Name], [a2].[CreatedDate], [a2].[DeletedDate], [a2].[DepartmentId], [a4].[Name], [a2].[DigitalInfo], [a2].[DoB], [a2].[EmployeeCode], (
+    SELECT TOP(1) [a].[ExamDate]
+    FROM [AppCompanyPatientHistory] AS [a]
+    WHERE [a2].[Id] = [a].[CompanyPatientId]
+    ORDER BY [a].[Id] DESC), [a2].[FullName], [a2].[FullNameNoAccent], [a2].[Gender], [a2].[Id], [a2].[IdentityCode], [a2].[IdentityDoI], [a2].[IdentityPoI], [a2].[ImportDate], (
+    SELECT TOP(1) [a0].[IsDone]
+    FROM [AppCompanyPatientHistory] AS [a0]
+    WHERE [a2].[Id] = [a0].[CompanyPatientId]
+    ORDER BY [a0].[Id] DESC), (
+    SELECT TOP(1) [a1].[PrintCount]
+    FROM [AppCompanyPatientHistory] AS [a1]
+    WHERE [a2].[Id] = [a1].[CompanyPatientId]
+    ORDER BY [a1].[Id] DESC), [a2].[YoB], [a3].[Id], [a4].[Id], [a5].[Id], [a5].[BloodPressure], [a5].[Classification], [a5].[CompanyPatientId], [a5].[CreatedBy], [a5].[CreatedDate], [a5].[DeletedDate], [a5].[Dentomaxillofacial], [a5].[DisplayOrder], [a5].[ExamDate], [a5].[ExternalMedicine], [a5].[Height], [a5].[InternalMedicine], [a5].[IsDone], [a5].[Note], [a5].[Ophthalmology], [a5].[Otorhinolaryngology], [a5].[PrintCount], [a5].[Pulse], [a5].[Reason], [a5].[Test], [a5].[UpdatedBy], [a5].[UpdatedDate], [a5].[Weigth]
+FROM [AppCompanyPatient] AS [a2]
+LEFT JOIN [AppCompany] AS [a3] ON [a2].[CompanyId] = [a3].[Id]
+LEFT JOIN [AppCompanyDepartment] AS [a4] ON [a2].[DepartmentId] = [a4].[Id]
+LEFT JOIN [AppCompanyPatientHistory] AS [a5] ON [a2].[Id] = [a5].[CompanyPatientId]
+WHERE [a2].[DeletedDate] IS NULL
+ORDER BY [a2].[DisplayOrder] DESC, [a2].[Id] DESC, [a3].[Id], [a4].[Id], [a5].[Id] 
+2023-07-09 20:05:58.398 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:05:58.472 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:05:58.616 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:05:58.645 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:05:58.677 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:05:58.697 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:05:58.804  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /CompanyPatient => 200 
+2023-07-09 20:06:01.277  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /Company => 200 
+2023-07-09 20:06:02.714 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[Address], [a].[AppRoleId], [a].[Avatar], [a].[BlockedBy], [a].[BlockedTo], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Email], [a].[FullName], [a].[PasswordHash], [a].[PhoneNumber1], [a].[PhoneNumber2], [a].[UpdatedBy], [a].[UpdatedDate], [a].[Username]
+FROM [AppUser] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:06:02.771  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /User => 200 
+2023-07-09 20:06:06.120 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[CreatedDate], [a].[Desc], [a].[Id], [a].[Name]
+FROM [AppRole] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:06:06.177  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /Role => 200 
+2023-07-09 20:06:07.720  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /file-manager => 200 
+2023-07-09 20:06:08.394  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /file-manager/connector => 200 
+2023-07-09 20:06:10.261 DEBUG App.Web.Controllers.CompanyPatientController.MoveNext [112]: SELECT [a2].[CompanyId], [a3].[Name], [a2].[CreatedDate], [a2].[DeletedDate], [a2].[DepartmentId], [a4].[Name], [a2].[DigitalInfo], [a2].[DoB], [a2].[EmployeeCode], (
+    SELECT TOP(1) [a].[ExamDate]
+    FROM [AppCompanyPatientHistory] AS [a]
+    WHERE [a2].[Id] = [a].[CompanyPatientId]
+    ORDER BY [a].[Id] DESC), [a2].[FullName], [a2].[FullNameNoAccent], [a2].[Gender], [a2].[Id], [a2].[IdentityCode], [a2].[IdentityDoI], [a2].[IdentityPoI], [a2].[ImportDate], (
+    SELECT TOP(1) [a0].[IsDone]
+    FROM [AppCompanyPatientHistory] AS [a0]
+    WHERE [a2].[Id] = [a0].[CompanyPatientId]
+    ORDER BY [a0].[Id] DESC), (
+    SELECT TOP(1) [a1].[PrintCount]
+    FROM [AppCompanyPatientHistory] AS [a1]
+    WHERE [a2].[Id] = [a1].[CompanyPatientId]
+    ORDER BY [a1].[Id] DESC), [a2].[YoB], [a3].[Id], [a4].[Id], [a5].[Id], [a5].[BloodPressure], [a5].[Classification], [a5].[CompanyPatientId], [a5].[CreatedBy], [a5].[CreatedDate], [a5].[DeletedDate], [a5].[Dentomaxillofacial], [a5].[DisplayOrder], [a5].[ExamDate], [a5].[ExternalMedicine], [a5].[Height], [a5].[InternalMedicine], [a5].[IsDone], [a5].[Note], [a5].[Ophthalmology], [a5].[Otorhinolaryngology], [a5].[PrintCount], [a5].[Pulse], [a5].[Reason], [a5].[Test], [a5].[UpdatedBy], [a5].[UpdatedDate], [a5].[Weigth]
+FROM [AppCompanyPatient] AS [a2]
+LEFT JOIN [AppCompany] AS [a3] ON [a2].[CompanyId] = [a3].[Id]
+LEFT JOIN [AppCompanyDepartment] AS [a4] ON [a2].[DepartmentId] = [a4].[Id]
+LEFT JOIN [AppCompanyPatientHistory] AS [a5] ON [a2].[Id] = [a5].[CompanyPatientId]
+WHERE [a2].[DeletedDate] IS NULL
+ORDER BY [a2].[DisplayOrder] DESC, [a2].[Id] DESC, [a3].[Id], [a4].[Id], [a5].[Id] 
+2023-07-09 20:06:10.283 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:06:10.304 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:06:10.323 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:06:10.340 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:06:10.356 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:06:10.380 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:06:10.724  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /CompanyPatient => 200 
+2023-07-09 20:11:16.118  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Application started. Press Ctrl+C to shut down. 
+2023-07-09 20:11:16.181  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Hosting environment: Development 
+2023-07-09 20:11:16.193  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Content root path: D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Web 
+2023-07-09 20:11:16.860  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET / => 200 
+2023-07-09 20:11:19.752 DEBUG App.Web.Controllers.CompanyPatientController.MoveNext [112]: SELECT [a2].[CompanyId], [a3].[Name], [a2].[CreatedDate], [a2].[DeletedDate], [a2].[DepartmentId], [a4].[Name], [a2].[DigitalInfo], [a2].[DoB], [a2].[EmployeeCode], (
+    SELECT TOP(1) [a].[ExamDate]
+    FROM [AppCompanyPatientHistory] AS [a]
+    WHERE [a2].[Id] = [a].[CompanyPatientId]
+    ORDER BY [a].[Id] DESC), [a2].[FullName], [a2].[FullNameNoAccent], [a2].[Gender], [a2].[Id], [a2].[IdentityCode], [a2].[IdentityDoI], [a2].[IdentityPoI], [a2].[ImportDate], (
+    SELECT TOP(1) [a0].[IsDone]
+    FROM [AppCompanyPatientHistory] AS [a0]
+    WHERE [a2].[Id] = [a0].[CompanyPatientId]
+    ORDER BY [a0].[Id] DESC), (
+    SELECT TOP(1) [a1].[PrintCount]
+    FROM [AppCompanyPatientHistory] AS [a1]
+    WHERE [a2].[Id] = [a1].[CompanyPatientId]
+    ORDER BY [a1].[Id] DESC), [a2].[YoB], [a3].[Id], [a4].[Id], [a5].[Id], [a5].[BloodPressure], [a5].[Classification], [a5].[CompanyPatientId], [a5].[CreatedBy], [a5].[CreatedDate], [a5].[DeletedDate], [a5].[Dentomaxillofacial], [a5].[DisplayOrder], [a5].[ExamDate], [a5].[ExternalMedicine], [a5].[Height], [a5].[InternalMedicine], [a5].[IsDone], [a5].[Note], [a5].[Ophthalmology], [a5].[Otorhinolaryngology], [a5].[PrintCount], [a5].[Pulse], [a5].[Reason], [a5].[Test], [a5].[UpdatedBy], [a5].[UpdatedDate], [a5].[Weigth]
+FROM [AppCompanyPatient] AS [a2]
+LEFT JOIN [AppCompany] AS [a3] ON [a2].[CompanyId] = [a3].[Id]
+LEFT JOIN [AppCompanyDepartment] AS [a4] ON [a2].[DepartmentId] = [a4].[Id]
+LEFT JOIN [AppCompanyPatientHistory] AS [a5] ON [a2].[Id] = [a5].[CompanyPatientId]
+WHERE [a2].[DeletedDate] IS NULL
+ORDER BY [a2].[DisplayOrder] DESC, [a2].[Id] DESC, [a3].[Id], [a4].[Id], [a5].[Id] 
+2023-07-09 20:11:20.131 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:11:20.204 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:11:20.348 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:11:20.375 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:11:20.406 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:11:20.428 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:11:20.560  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /CompanyPatient => 200 
+2023-07-09 20:11:43.273 DEBUG App.Web.Controllers.CompanyPatientController.MoveNext [112]: SELECT [a2].[CompanyId], [a3].[Name], [a2].[CreatedDate], [a2].[DeletedDate], [a2].[DepartmentId], [a4].[Name], [a2].[DigitalInfo], [a2].[DoB], [a2].[EmployeeCode], (
+    SELECT TOP(1) [a].[ExamDate]
+    FROM [AppCompanyPatientHistory] AS [a]
+    WHERE [a2].[Id] = [a].[CompanyPatientId]
+    ORDER BY [a].[Id] DESC), [a2].[FullName], [a2].[FullNameNoAccent], [a2].[Gender], [a2].[Id], [a2].[IdentityCode], [a2].[IdentityDoI], [a2].[IdentityPoI], [a2].[ImportDate], (
+    SELECT TOP(1) [a0].[IsDone]
+    FROM [AppCompanyPatientHistory] AS [a0]
+    WHERE [a2].[Id] = [a0].[CompanyPatientId]
+    ORDER BY [a0].[Id] DESC), (
+    SELECT TOP(1) [a1].[PrintCount]
+    FROM [AppCompanyPatientHistory] AS [a1]
+    WHERE [a2].[Id] = [a1].[CompanyPatientId]
+    ORDER BY [a1].[Id] DESC), [a2].[YoB], [a3].[Id], [a4].[Id], [a5].[Id], [a5].[BloodPressure], [a5].[Classification], [a5].[CompanyPatientId], [a5].[CreatedBy], [a5].[CreatedDate], [a5].[DeletedDate], [a5].[Dentomaxillofacial], [a5].[DisplayOrder], [a5].[ExamDate], [a5].[ExternalMedicine], [a5].[Height], [a5].[InternalMedicine], [a5].[IsDone], [a5].[Note], [a5].[Ophthalmology], [a5].[Otorhinolaryngology], [a5].[PrintCount], [a5].[Pulse], [a5].[Reason], [a5].[Test], [a5].[UpdatedBy], [a5].[UpdatedDate], [a5].[Weigth]
+FROM [AppCompanyPatient] AS [a2]
+LEFT JOIN [AppCompany] AS [a3] ON [a2].[CompanyId] = [a3].[Id]
+LEFT JOIN [AppCompanyDepartment] AS [a4] ON [a2].[DepartmentId] = [a4].[Id]
+LEFT JOIN [AppCompanyPatientHistory] AS [a5] ON [a2].[Id] = [a5].[CompanyPatientId]
+WHERE [a2].[DeletedDate] IS NOT NULL
+ORDER BY [a2].[DisplayOrder] DESC, [a2].[Id] DESC, [a3].[Id], [a4].[Id], [a5].[Id] 
+2023-07-09 20:11:43.314 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:11:43.335 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:11:43.370  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /CompanyPatient/HidedPatient => 200 
+2023-07-09 20:11:45.883 DEBUG App.Web.Controllers.CompanyPatientController.MoveNext [112]: SELECT [a2].[CompanyId], [a3].[Name], [a2].[CreatedDate], [a2].[DeletedDate], [a2].[DepartmentId], [a4].[Name], [a2].[DigitalInfo], [a2].[DoB], [a2].[EmployeeCode], (
+    SELECT TOP(1) [a].[ExamDate]
+    FROM [AppCompanyPatientHistory] AS [a]
+    WHERE [a2].[Id] = [a].[CompanyPatientId]
+    ORDER BY [a].[Id] DESC), [a2].[FullName], [a2].[FullNameNoAccent], [a2].[Gender], [a2].[Id], [a2].[IdentityCode], [a2].[IdentityDoI], [a2].[IdentityPoI], [a2].[ImportDate], (
+    SELECT TOP(1) [a0].[IsDone]
+    FROM [AppCompanyPatientHistory] AS [a0]
+    WHERE [a2].[Id] = [a0].[CompanyPatientId]
+    ORDER BY [a0].[Id] DESC), (
+    SELECT TOP(1) [a1].[PrintCount]
+    FROM [AppCompanyPatientHistory] AS [a1]
+    WHERE [a2].[Id] = [a1].[CompanyPatientId]
+    ORDER BY [a1].[Id] DESC), [a2].[YoB], [a3].[Id], [a4].[Id], [a5].[Id], [a5].[BloodPressure], [a5].[Classification], [a5].[CompanyPatientId], [a5].[CreatedBy], [a5].[CreatedDate], [a5].[DeletedDate], [a5].[Dentomaxillofacial], [a5].[DisplayOrder], [a5].[ExamDate], [a5].[ExternalMedicine], [a5].[Height], [a5].[InternalMedicine], [a5].[IsDone], [a5].[Note], [a5].[Ophthalmology], [a5].[Otorhinolaryngology], [a5].[PrintCount], [a5].[Pulse], [a5].[Reason], [a5].[Test], [a5].[UpdatedBy], [a5].[UpdatedDate], [a5].[Weigth]
+FROM [AppCompanyPatient] AS [a2]
+LEFT JOIN [AppCompany] AS [a3] ON [a2].[CompanyId] = [a3].[Id]
+LEFT JOIN [AppCompanyDepartment] AS [a4] ON [a2].[DepartmentId] = [a4].[Id]
+LEFT JOIN [AppCompanyPatientHistory] AS [a5] ON [a2].[Id] = [a5].[CompanyPatientId]
+WHERE [a2].[DeletedDate] IS NULL
+ORDER BY [a2].[DisplayOrder] DESC, [a2].[Id] DESC, [a3].[Id], [a4].[Id], [a5].[Id] 
+2023-07-09 20:11:45.924 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:11:45.943 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:11:45.959 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:11:45.978 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:11:45.998 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:11:46.028 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:11:46.063  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /CompanyPatient => 200 
+2023-07-09 20:12:22.330 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: DECLARE @__id_0 int = 28;
+
+SELECT [a].[Id], [a].[Address], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DepartmentId], [a].[DigitalInfo], [a].[DisplayOrder], [a].[DoB], [a].[EmployeeCode], [a].[FullName], [a].[FullNameNoAccent], [a].[Gender], [a].[IdentityCode], [a].[IdentityDoI], [a].[IdentityPoI], [a].[ImportDate], [a].[UpdatedBy], [a].[UpdatedDate], [a].[YoB]
+FROM [AppCompanyPatient] AS [a]
+WHERE [a].[DeletedDate] IS NULL AND ([a].[Id] = @__id_0) 
+2023-07-09 20:12:22.622  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /CompanyPatient/Hide/28 => 302 
+2023-07-09 20:12:22.698 DEBUG App.Web.Controllers.CompanyPatientController.MoveNext [112]: SELECT [a2].[CompanyId], [a3].[Name], [a2].[CreatedDate], [a2].[DeletedDate], [a2].[DepartmentId], [a4].[Name], [a2].[DigitalInfo], [a2].[DoB], [a2].[EmployeeCode], (
+    SELECT TOP(1) [a].[ExamDate]
+    FROM [AppCompanyPatientHistory] AS [a]
+    WHERE [a2].[Id] = [a].[CompanyPatientId]
+    ORDER BY [a].[Id] DESC), [a2].[FullName], [a2].[FullNameNoAccent], [a2].[Gender], [a2].[Id], [a2].[IdentityCode], [a2].[IdentityDoI], [a2].[IdentityPoI], [a2].[ImportDate], (
+    SELECT TOP(1) [a0].[IsDone]
+    FROM [AppCompanyPatientHistory] AS [a0]
+    WHERE [a2].[Id] = [a0].[CompanyPatientId]
+    ORDER BY [a0].[Id] DESC), (
+    SELECT TOP(1) [a1].[PrintCount]
+    FROM [AppCompanyPatientHistory] AS [a1]
+    WHERE [a2].[Id] = [a1].[CompanyPatientId]
+    ORDER BY [a1].[Id] DESC), [a2].[YoB], [a3].[Id], [a4].[Id], [a5].[Id], [a5].[BloodPressure], [a5].[Classification], [a5].[CompanyPatientId], [a5].[CreatedBy], [a5].[CreatedDate], [a5].[DeletedDate], [a5].[Dentomaxillofacial], [a5].[DisplayOrder], [a5].[ExamDate], [a5].[ExternalMedicine], [a5].[Height], [a5].[InternalMedicine], [a5].[IsDone], [a5].[Note], [a5].[Ophthalmology], [a5].[Otorhinolaryngology], [a5].[PrintCount], [a5].[Pulse], [a5].[Reason], [a5].[Test], [a5].[UpdatedBy], [a5].[UpdatedDate], [a5].[Weigth]
+FROM [AppCompanyPatient] AS [a2]
+LEFT JOIN [AppCompany] AS [a3] ON [a2].[CompanyId] = [a3].[Id]
+LEFT JOIN [AppCompanyDepartment] AS [a4] ON [a2].[DepartmentId] = [a4].[Id]
+LEFT JOIN [AppCompanyPatientHistory] AS [a5] ON [a2].[Id] = [a5].[CompanyPatientId]
+WHERE [a2].[DeletedDate] IS NULL
+ORDER BY [a2].[DisplayOrder] DESC, [a2].[Id] DESC, [a3].[Id], [a4].[Id], [a5].[Id] 
+2023-07-09 20:12:22.729 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:12:22.750 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:12:22.768 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:12:22.785 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:12:22.799 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:12:22.819 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:12:22.856  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /CompanyPatient => 200 
+2023-07-09 20:12:24.162 DEBUG App.Web.Controllers.CompanyPatientController.MoveNext [112]: SELECT [a2].[CompanyId], [a3].[Name], [a2].[CreatedDate], [a2].[DeletedDate], [a2].[DepartmentId], [a4].[Name], [a2].[DigitalInfo], [a2].[DoB], [a2].[EmployeeCode], (
+    SELECT TOP(1) [a].[ExamDate]
+    FROM [AppCompanyPatientHistory] AS [a]
+    WHERE [a2].[Id] = [a].[CompanyPatientId]
+    ORDER BY [a].[Id] DESC), [a2].[FullName], [a2].[FullNameNoAccent], [a2].[Gender], [a2].[Id], [a2].[IdentityCode], [a2].[IdentityDoI], [a2].[IdentityPoI], [a2].[ImportDate], (
+    SELECT TOP(1) [a0].[IsDone]
+    FROM [AppCompanyPatientHistory] AS [a0]
+    WHERE [a2].[Id] = [a0].[CompanyPatientId]
+    ORDER BY [a0].[Id] DESC), (
+    SELECT TOP(1) [a1].[PrintCount]
+    FROM [AppCompanyPatientHistory] AS [a1]
+    WHERE [a2].[Id] = [a1].[CompanyPatientId]
+    ORDER BY [a1].[Id] DESC), [a2].[YoB], [a3].[Id], [a4].[Id], [a5].[Id], [a5].[BloodPressure], [a5].[Classification], [a5].[CompanyPatientId], [a5].[CreatedBy], [a5].[CreatedDate], [a5].[DeletedDate], [a5].[Dentomaxillofacial], [a5].[DisplayOrder], [a5].[ExamDate], [a5].[ExternalMedicine], [a5].[Height], [a5].[InternalMedicine], [a5].[IsDone], [a5].[Note], [a5].[Ophthalmology], [a5].[Otorhinolaryngology], [a5].[PrintCount], [a5].[Pulse], [a5].[Reason], [a5].[Test], [a5].[UpdatedBy], [a5].[UpdatedDate], [a5].[Weigth]
+FROM [AppCompanyPatient] AS [a2]
+LEFT JOIN [AppCompany] AS [a3] ON [a2].[CompanyId] = [a3].[Id]
+LEFT JOIN [AppCompanyDepartment] AS [a4] ON [a2].[DepartmentId] = [a4].[Id]
+LEFT JOIN [AppCompanyPatientHistory] AS [a5] ON [a2].[Id] = [a5].[CompanyPatientId]
+WHERE [a2].[DeletedDate] IS NOT NULL
+ORDER BY [a2].[DisplayOrder] DESC, [a2].[Id] DESC, [a3].[Id], [a4].[Id], [a5].[Id] 
+2023-07-09 20:12:24.204 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:12:24.225 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:12:24.279  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /CompanyPatient/HidedPatient => 200 
+2023-07-09 20:23:09.331  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Application started. Press Ctrl+C to shut down. 
+2023-07-09 20:23:09.396  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Hosting environment: Development 
+2023-07-09 20:23:09.401  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Content root path: D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Web 
+2023-07-09 20:23:10.081  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET / => 200 
+2023-07-09 20:23:12.836 DEBUG App.Web.Controllers.CompanyPatientController.MoveNext [112]: SELECT [a2].[CompanyId], [a3].[Name], [a2].[CreatedDate], [a2].[DeletedDate], [a2].[DepartmentId], [a4].[Name], [a2].[DigitalInfo], [a2].[DoB], [a2].[EmployeeCode], (
+    SELECT TOP(1) [a].[ExamDate]
+    FROM [AppCompanyPatientHistory] AS [a]
+    WHERE [a2].[Id] = [a].[CompanyPatientId]
+    ORDER BY [a].[Id] DESC), [a2].[FullName], [a2].[FullNameNoAccent], [a2].[Gender], [a2].[Id], [a2].[IdentityCode], [a2].[IdentityDoI], [a2].[IdentityPoI], [a2].[ImportDate], (
+    SELECT TOP(1) [a0].[IsDone]
+    FROM [AppCompanyPatientHistory] AS [a0]
+    WHERE [a2].[Id] = [a0].[CompanyPatientId]
+    ORDER BY [a0].[Id] DESC), (
+    SELECT TOP(1) [a1].[PrintCount]
+    FROM [AppCompanyPatientHistory] AS [a1]
+    WHERE [a2].[Id] = [a1].[CompanyPatientId]
+    ORDER BY [a1].[Id] DESC), [a2].[YoB], [a3].[Id], [a4].[Id], [a5].[Id], [a5].[BloodPressure], [a5].[Classification], [a5].[CompanyPatientId], [a5].[CreatedBy], [a5].[CreatedDate], [a5].[DeletedDate], [a5].[Dentomaxillofacial], [a5].[DisplayOrder], [a5].[ExamDate], [a5].[ExternalMedicine], [a5].[Height], [a5].[InternalMedicine], [a5].[IsDone], [a5].[Note], [a5].[Ophthalmology], [a5].[Otorhinolaryngology], [a5].[PrintCount], [a5].[Pulse], [a5].[Reason], [a5].[Test], [a5].[UpdatedBy], [a5].[UpdatedDate], [a5].[Weigth]
+FROM [AppCompanyPatient] AS [a2]
+LEFT JOIN [AppCompany] AS [a3] ON [a2].[CompanyId] = [a3].[Id]
+LEFT JOIN [AppCompanyDepartment] AS [a4] ON [a2].[DepartmentId] = [a4].[Id]
+LEFT JOIN [AppCompanyPatientHistory] AS [a5] ON [a2].[Id] = [a5].[CompanyPatientId]
+WHERE [a2].[DeletedDate] IS NULL
+ORDER BY [a2].[DisplayOrder] DESC, [a2].[Id] DESC, [a3].[Id], [a4].[Id], [a5].[Id] 
+2023-07-09 20:23:13.189 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:23:13.259 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:23:13.401 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:23:13.431 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:23:13.469 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:23:13.488 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:23:13.598  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /CompanyPatient => 200 
+2023-07-09 20:23:17.445 DEBUG App.Web.Controllers.CompanyPatientController.MoveNext [112]: SELECT [a2].[CompanyId], [a3].[Name], [a2].[CreatedDate], [a2].[DeletedDate], [a2].[DepartmentId], [a4].[Name], [a2].[DigitalInfo], [a2].[DoB], [a2].[EmployeeCode], (
+    SELECT TOP(1) [a].[ExamDate]
+    FROM [AppCompanyPatientHistory] AS [a]
+    WHERE [a2].[Id] = [a].[CompanyPatientId]
+    ORDER BY [a].[Id] DESC), [a2].[FullName], [a2].[FullNameNoAccent], [a2].[Gender], [a2].[Id], [a2].[IdentityCode], [a2].[IdentityDoI], [a2].[IdentityPoI], [a2].[ImportDate], (
+    SELECT TOP(1) [a0].[IsDone]
+    FROM [AppCompanyPatientHistory] AS [a0]
+    WHERE [a2].[Id] = [a0].[CompanyPatientId]
+    ORDER BY [a0].[Id] DESC), (
+    SELECT TOP(1) [a1].[PrintCount]
+    FROM [AppCompanyPatientHistory] AS [a1]
+    WHERE [a2].[Id] = [a1].[CompanyPatientId]
+    ORDER BY [a1].[Id] DESC), [a2].[YoB], [a3].[Id], [a4].[Id], [a5].[Id], [a5].[BloodPressure], [a5].[Classification], [a5].[CompanyPatientId], [a5].[CreatedBy], [a5].[CreatedDate], [a5].[DeletedDate], [a5].[Dentomaxillofacial], [a5].[DisplayOrder], [a5].[ExamDate], [a5].[ExternalMedicine], [a5].[Height], [a5].[InternalMedicine], [a5].[IsDone], [a5].[Note], [a5].[Ophthalmology], [a5].[Otorhinolaryngology], [a5].[PrintCount], [a5].[Pulse], [a5].[Reason], [a5].[Test], [a5].[UpdatedBy], [a5].[UpdatedDate], [a5].[Weigth]
+FROM [AppCompanyPatient] AS [a2]
+LEFT JOIN [AppCompany] AS [a3] ON [a2].[CompanyId] = [a3].[Id]
+LEFT JOIN [AppCompanyDepartment] AS [a4] ON [a2].[DepartmentId] = [a4].[Id]
+LEFT JOIN [AppCompanyPatientHistory] AS [a5] ON [a2].[Id] = [a5].[CompanyPatientId]
+WHERE [a2].[DeletedDate] IS NOT NULL
+ORDER BY [a2].[DisplayOrder] DESC, [a2].[Id] DESC, [a3].[Id], [a4].[Id], [a5].[Id] 
+2023-07-09 20:23:17.508 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:23:17.530 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:23:17.563  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /CompanyPatient/HidedPatient => 200 
+2023-07-09 20:25:58.750 DEBUG App.Web.Controllers.CompanyPatientController.MoveNext [112]: SELECT [a2].[CompanyId], [a3].[Name], [a2].[CreatedDate], [a2].[DeletedDate], [a2].[DepartmentId], [a4].[Name], [a2].[DigitalInfo], [a2].[DoB], [a2].[EmployeeCode], (
+    SELECT TOP(1) [a].[ExamDate]
+    FROM [AppCompanyPatientHistory] AS [a]
+    WHERE [a2].[Id] = [a].[CompanyPatientId]
+    ORDER BY [a].[Id] DESC), [a2].[FullName], [a2].[FullNameNoAccent], [a2].[Gender], [a2].[Id], [a2].[IdentityCode], [a2].[IdentityDoI], [a2].[IdentityPoI], [a2].[ImportDate], (
+    SELECT TOP(1) [a0].[IsDone]
+    FROM [AppCompanyPatientHistory] AS [a0]
+    WHERE [a2].[Id] = [a0].[CompanyPatientId]
+    ORDER BY [a0].[Id] DESC), (
+    SELECT TOP(1) [a1].[PrintCount]
+    FROM [AppCompanyPatientHistory] AS [a1]
+    WHERE [a2].[Id] = [a1].[CompanyPatientId]
+    ORDER BY [a1].[Id] DESC), [a2].[YoB], [a3].[Id], [a4].[Id], [a5].[Id], [a5].[BloodPressure], [a5].[Classification], [a5].[CompanyPatientId], [a5].[CreatedBy], [a5].[CreatedDate], [a5].[DeletedDate], [a5].[Dentomaxillofacial], [a5].[DisplayOrder], [a5].[ExamDate], [a5].[ExternalMedicine], [a5].[Height], [a5].[InternalMedicine], [a5].[IsDone], [a5].[Note], [a5].[Ophthalmology], [a5].[Otorhinolaryngology], [a5].[PrintCount], [a5].[Pulse], [a5].[Reason], [a5].[Test], [a5].[UpdatedBy], [a5].[UpdatedDate], [a5].[Weigth]
+FROM [AppCompanyPatient] AS [a2]
+LEFT JOIN [AppCompany] AS [a3] ON [a2].[CompanyId] = [a3].[Id]
+LEFT JOIN [AppCompanyDepartment] AS [a4] ON [a2].[DepartmentId] = [a4].[Id]
+LEFT JOIN [AppCompanyPatientHistory] AS [a5] ON [a2].[Id] = [a5].[CompanyPatientId]
+WHERE [a2].[DeletedDate] IS NULL
+ORDER BY [a2].[DisplayOrder] DESC, [a2].[Id] DESC, [a3].[Id], [a4].[Id], [a5].[Id] 
+2023-07-09 20:25:58.796 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:25:58.826 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:25:58.845 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:25:58.859 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:25:58.873 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:25:58.888 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:25:58.917  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /CompanyPatient => 200 
+2023-07-09 20:32:27.510  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Application started. Press Ctrl+C to shut down. 
+2023-07-09 20:32:27.564  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Hosting environment: Development 
+2023-07-09 20:32:27.572  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Content root path: D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Web 
+2023-07-09 20:32:28.252  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET / => 200 
+2023-07-09 20:32:30.716 DEBUG App.Web.Controllers.CompanyPatientController.MoveNext [112]: SELECT [a2].[CompanyId], [a3].[Name], [a2].[CreatedDate], [a2].[DeletedDate], [a2].[DepartmentId], [a4].[Name], [a2].[DigitalInfo], [a2].[DoB], [a2].[EmployeeCode], (
+    SELECT TOP(1) [a].[ExamDate]
+    FROM [AppCompanyPatientHistory] AS [a]
+    WHERE [a2].[Id] = [a].[CompanyPatientId]
+    ORDER BY [a].[Id] DESC), [a2].[FullName], [a2].[FullNameNoAccent], [a2].[Gender], [a2].[Id], [a2].[IdentityCode], [a2].[IdentityDoI], [a2].[IdentityPoI], [a2].[ImportDate], (
+    SELECT TOP(1) [a0].[IsDone]
+    FROM [AppCompanyPatientHistory] AS [a0]
+    WHERE [a2].[Id] = [a0].[CompanyPatientId]
+    ORDER BY [a0].[Id] DESC), (
+    SELECT TOP(1) [a1].[PrintCount]
+    FROM [AppCompanyPatientHistory] AS [a1]
+    WHERE [a2].[Id] = [a1].[CompanyPatientId]
+    ORDER BY [a1].[Id] DESC), [a2].[YoB], [a3].[Id], [a4].[Id], [a5].[Id], [a5].[BloodPressure], [a5].[Classification], [a5].[CompanyPatientId], [a5].[CreatedBy], [a5].[CreatedDate], [a5].[DeletedDate], [a5].[Dentomaxillofacial], [a5].[DisplayOrder], [a5].[ExamDate], [a5].[ExternalMedicine], [a5].[Height], [a5].[InternalMedicine], [a5].[IsDone], [a5].[Note], [a5].[Ophthalmology], [a5].[Otorhinolaryngology], [a5].[PrintCount], [a5].[Pulse], [a5].[Reason], [a5].[Test], [a5].[UpdatedBy], [a5].[UpdatedDate], [a5].[Weigth]
+FROM [AppCompanyPatient] AS [a2]
+LEFT JOIN [AppCompany] AS [a3] ON [a2].[CompanyId] = [a3].[Id]
+LEFT JOIN [AppCompanyDepartment] AS [a4] ON [a2].[DepartmentId] = [a4].[Id]
+LEFT JOIN [AppCompanyPatientHistory] AS [a5] ON [a2].[Id] = [a5].[CompanyPatientId]
+WHERE [a2].[DeletedDate] IS NULL
+ORDER BY [a2].[DisplayOrder] DESC, [a2].[Id] DESC, [a3].[Id], [a4].[Id], [a5].[Id] 
+2023-07-09 20:32:31.107 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:32:31.189 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:32:31.350 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:32:31.387 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:32:31.423 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:32:31.449 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:32:31.569  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /CompanyPatient => 200 
+2023-07-09 20:32:32.969 DEBUG App.Web.Controllers.CompanyPatientController.MoveNext [112]: SELECT [a2].[CompanyId], [a3].[Name], [a2].[CreatedDate], [a2].[DeletedDate], [a2].[DepartmentId], [a4].[Name], [a2].[DigitalInfo], [a2].[DoB], [a2].[EmployeeCode], (
+    SELECT TOP(1) [a].[ExamDate]
+    FROM [AppCompanyPatientHistory] AS [a]
+    WHERE [a2].[Id] = [a].[CompanyPatientId]
+    ORDER BY [a].[Id] DESC), [a2].[FullName], [a2].[FullNameNoAccent], [a2].[Gender], [a2].[Id], [a2].[IdentityCode], [a2].[IdentityDoI], [a2].[IdentityPoI], [a2].[ImportDate], (
+    SELECT TOP(1) [a0].[IsDone]
+    FROM [AppCompanyPatientHistory] AS [a0]
+    WHERE [a2].[Id] = [a0].[CompanyPatientId]
+    ORDER BY [a0].[Id] DESC), (
+    SELECT TOP(1) [a1].[PrintCount]
+    FROM [AppCompanyPatientHistory] AS [a1]
+    WHERE [a2].[Id] = [a1].[CompanyPatientId]
+    ORDER BY [a1].[Id] DESC), [a2].[YoB], [a3].[Id], [a4].[Id], [a5].[Id], [a5].[BloodPressure], [a5].[Classification], [a5].[CompanyPatientId], [a5].[CreatedBy], [a5].[CreatedDate], [a5].[DeletedDate], [a5].[Dentomaxillofacial], [a5].[DisplayOrder], [a5].[ExamDate], [a5].[ExternalMedicine], [a5].[Height], [a5].[InternalMedicine], [a5].[IsDone], [a5].[Note], [a5].[Ophthalmology], [a5].[Otorhinolaryngology], [a5].[PrintCount], [a5].[Pulse], [a5].[Reason], [a5].[Test], [a5].[UpdatedBy], [a5].[UpdatedDate], [a5].[Weigth]
+FROM [AppCompanyPatient] AS [a2]
+LEFT JOIN [AppCompany] AS [a3] ON [a2].[CompanyId] = [a3].[Id]
+LEFT JOIN [AppCompanyDepartment] AS [a4] ON [a2].[DepartmentId] = [a4].[Id]
+LEFT JOIN [AppCompanyPatientHistory] AS [a5] ON [a2].[Id] = [a5].[CompanyPatientId]
+WHERE [a2].[DeletedDate] IS NOT NULL
+ORDER BY [a2].[DisplayOrder] DESC, [a2].[Id] DESC, [a3].[Id], [a4].[Id], [a5].[Id] 
+2023-07-09 20:32:33.029 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:32:33.051 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 20:32:33.085  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /CompanyPatient/HidedPatient => 200 
+2023-07-09 21:12:29.554  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Application started. Press Ctrl+C to shut down. 
+2023-07-09 21:12:29.626  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Hosting environment: Development 
+2023-07-09 21:12:29.632  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Content root path: D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Web 
+2023-07-09 21:12:30.691  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET / => 200 
+2023-07-09 21:12:42.614 DEBUG App.Web.Controllers.CompanyPatientController.MoveNext [112]: SELECT [a2].[CompanyId], [a3].[Name], [a2].[CreatedDate], [a2].[DeletedDate], [a2].[DepartmentId], [a4].[Name], [a2].[DigitalInfo], [a2].[DoB], [a2].[EmployeeCode], (
+    SELECT TOP(1) [a].[ExamDate]
+    FROM [AppCompanyPatientHistory] AS [a]
+    WHERE [a2].[Id] = [a].[CompanyPatientId]
+    ORDER BY [a].[Id] DESC), [a2].[FullName], [a2].[FullNameNoAccent], [a2].[Gender], [a2].[Id], [a2].[IdentityCode], [a2].[IdentityDoI], [a2].[IdentityPoI], [a2].[ImportDate], (
+    SELECT TOP(1) [a0].[IsDone]
+    FROM [AppCompanyPatientHistory] AS [a0]
+    WHERE [a2].[Id] = [a0].[CompanyPatientId]
+    ORDER BY [a0].[Id] DESC), (
+    SELECT TOP(1) [a1].[PrintCount]
+    FROM [AppCompanyPatientHistory] AS [a1]
+    WHERE [a2].[Id] = [a1].[CompanyPatientId]
+    ORDER BY [a1].[Id] DESC), [a2].[YoB], [a3].[Id], [a4].[Id], [a5].[Id], [a5].[BloodPressure], [a5].[Classification], [a5].[CompanyPatientId], [a5].[CreatedBy], [a5].[CreatedDate], [a5].[DeletedDate], [a5].[Dentomaxillofacial], [a5].[DisplayOrder], [a5].[ExamDate], [a5].[ExternalMedicine], [a5].[Height], [a5].[InternalMedicine], [a5].[IsDone], [a5].[Note], [a5].[Ophthalmology], [a5].[Otorhinolaryngology], [a5].[PrintCount], [a5].[Pulse], [a5].[Reason], [a5].[Test], [a5].[UpdatedBy], [a5].[UpdatedDate], [a5].[Weigth]
+FROM [AppCompanyPatient] AS [a2]
+LEFT JOIN [AppCompany] AS [a3] ON [a2].[CompanyId] = [a3].[Id]
+LEFT JOIN [AppCompanyDepartment] AS [a4] ON [a2].[DepartmentId] = [a4].[Id]
+LEFT JOIN [AppCompanyPatientHistory] AS [a5] ON [a2].[Id] = [a5].[CompanyPatientId]
+WHERE [a2].[DeletedDate] IS NULL
+ORDER BY [a2].[DisplayOrder] DESC, [a2].[Id] DESC, [a3].[Id], [a4].[Id], [a5].[Id] 
+2023-07-09 21:12:43.071 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 21:12:43.150 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 21:12:43.286 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 21:12:43.309 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 21:12:43.340 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 21:12:43.356 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 21:12:43.474  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /CompanyPatient => 200 
+2023-07-09 21:12:45.252 DEBUG App.Web.Controllers.CompanyPatientController.MoveNext [112]: SELECT [a2].[CompanyId], [a3].[Name], [a2].[CreatedDate], [a2].[DeletedDate], [a2].[DepartmentId], [a4].[Name], [a2].[DigitalInfo], [a2].[DoB], [a2].[EmployeeCode], (
+    SELECT TOP(1) [a].[ExamDate]
+    FROM [AppCompanyPatientHistory] AS [a]
+    WHERE [a2].[Id] = [a].[CompanyPatientId]
+    ORDER BY [a].[Id] DESC), [a2].[FullName], [a2].[FullNameNoAccent], [a2].[Gender], [a2].[Id], [a2].[IdentityCode], [a2].[IdentityDoI], [a2].[IdentityPoI], [a2].[ImportDate], (
+    SELECT TOP(1) [a0].[IsDone]
+    FROM [AppCompanyPatientHistory] AS [a0]
+    WHERE [a2].[Id] = [a0].[CompanyPatientId]
+    ORDER BY [a0].[Id] DESC), (
+    SELECT TOP(1) [a1].[PrintCount]
+    FROM [AppCompanyPatientHistory] AS [a1]
+    WHERE [a2].[Id] = [a1].[CompanyPatientId]
+    ORDER BY [a1].[Id] DESC), [a2].[YoB], [a3].[Id], [a4].[Id], [a5].[Id], [a5].[BloodPressure], [a5].[Classification], [a5].[CompanyPatientId], [a5].[CreatedBy], [a5].[CreatedDate], [a5].[DeletedDate], [a5].[Dentomaxillofacial], [a5].[DisplayOrder], [a5].[ExamDate], [a5].[ExternalMedicine], [a5].[Height], [a5].[InternalMedicine], [a5].[IsDone], [a5].[Note], [a5].[Ophthalmology], [a5].[Otorhinolaryngology], [a5].[PrintCount], [a5].[Pulse], [a5].[Reason], [a5].[Test], [a5].[UpdatedBy], [a5].[UpdatedDate], [a5].[Weigth]
+FROM [AppCompanyPatient] AS [a2]
+LEFT JOIN [AppCompany] AS [a3] ON [a2].[CompanyId] = [a3].[Id]
+LEFT JOIN [AppCompanyDepartment] AS [a4] ON [a2].[DepartmentId] = [a4].[Id]
+LEFT JOIN [AppCompanyPatientHistory] AS [a5] ON [a2].[Id] = [a5].[CompanyPatientId]
+WHERE [a2].[DeletedDate] IS NOT NULL
+ORDER BY [a2].[DisplayOrder] DESC, [a2].[Id] DESC, [a3].[Id], [a4].[Id], [a5].[Id] 
+2023-07-09 21:12:45.323 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 21:12:45.343 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 21:12:45.381  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /CompanyPatient/HidedPatient => 200 
+2023-07-09 21:12:57.435  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /CompanyPatient/Delete/28 => 404 
+2023-07-09 21:12:57.469  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /error/404 => 404 
+2023-07-09 21:12:59.952 DEBUG App.Web.Controllers.CompanyPatientController.MoveNext [112]: SELECT [a2].[CompanyId], [a3].[Name], [a2].[CreatedDate], [a2].[DeletedDate], [a2].[DepartmentId], [a4].[Name], [a2].[DigitalInfo], [a2].[DoB], [a2].[EmployeeCode], (
+    SELECT TOP(1) [a].[ExamDate]
+    FROM [AppCompanyPatientHistory] AS [a]
+    WHERE [a2].[Id] = [a].[CompanyPatientId]
+    ORDER BY [a].[Id] DESC), [a2].[FullName], [a2].[FullNameNoAccent], [a2].[Gender], [a2].[Id], [a2].[IdentityCode], [a2].[IdentityDoI], [a2].[IdentityPoI], [a2].[ImportDate], (
+    SELECT TOP(1) [a0].[IsDone]
+    FROM [AppCompanyPatientHistory] AS [a0]
+    WHERE [a2].[Id] = [a0].[CompanyPatientId]
+    ORDER BY [a0].[Id] DESC), (
+    SELECT TOP(1) [a1].[PrintCount]
+    FROM [AppCompanyPatientHistory] AS [a1]
+    WHERE [a2].[Id] = [a1].[CompanyPatientId]
+    ORDER BY [a1].[Id] DESC), [a2].[YoB], [a3].[Id], [a4].[Id], [a5].[Id], [a5].[BloodPressure], [a5].[Classification], [a5].[CompanyPatientId], [a5].[CreatedBy], [a5].[CreatedDate], [a5].[DeletedDate], [a5].[Dentomaxillofacial], [a5].[DisplayOrder], [a5].[ExamDate], [a5].[ExternalMedicine], [a5].[Height], [a5].[InternalMedicine], [a5].[IsDone], [a5].[Note], [a5].[Ophthalmology], [a5].[Otorhinolaryngology], [a5].[PrintCount], [a5].[Pulse], [a5].[Reason], [a5].[Test], [a5].[UpdatedBy], [a5].[UpdatedDate], [a5].[Weigth]
+FROM [AppCompanyPatient] AS [a2]
+LEFT JOIN [AppCompany] AS [a3] ON [a2].[CompanyId] = [a3].[Id]
+LEFT JOIN [AppCompanyDepartment] AS [a4] ON [a2].[DepartmentId] = [a4].[Id]
+LEFT JOIN [AppCompanyPatientHistory] AS [a5] ON [a2].[Id] = [a5].[CompanyPatientId]
+WHERE [a2].[DeletedDate] IS NULL
+ORDER BY [a2].[DisplayOrder] DESC, [a2].[Id] DESC, [a3].[Id], [a4].[Id], [a5].[Id] 
+2023-07-09 21:12:59.973 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 21:12:59.993 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 21:13:00.009 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 21:13:00.031 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 21:13:00.045 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 21:13:00.064 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 21:13:00.091  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /CompanyPatient => 200 
+2023-07-09 21:14:07.886 DEBUG App.Web.Controllers.CompanyPatientController.MoveNext [112]: SELECT [a2].[CompanyId], [a3].[Name], [a2].[CreatedDate], [a2].[DeletedDate], [a2].[DepartmentId], [a4].[Name], [a2].[DigitalInfo], [a2].[DoB], [a2].[EmployeeCode], (
+    SELECT TOP(1) [a].[ExamDate]
+    FROM [AppCompanyPatientHistory] AS [a]
+    WHERE [a2].[Id] = [a].[CompanyPatientId]
+    ORDER BY [a].[Id] DESC), [a2].[FullName], [a2].[FullNameNoAccent], [a2].[Gender], [a2].[Id], [a2].[IdentityCode], [a2].[IdentityDoI], [a2].[IdentityPoI], [a2].[ImportDate], (
+    SELECT TOP(1) [a0].[IsDone]
+    FROM [AppCompanyPatientHistory] AS [a0]
+    WHERE [a2].[Id] = [a0].[CompanyPatientId]
+    ORDER BY [a0].[Id] DESC), (
+    SELECT TOP(1) [a1].[PrintCount]
+    FROM [AppCompanyPatientHistory] AS [a1]
+    WHERE [a2].[Id] = [a1].[CompanyPatientId]
+    ORDER BY [a1].[Id] DESC), [a2].[YoB], [a3].[Id], [a4].[Id], [a5].[Id], [a5].[BloodPressure], [a5].[Classification], [a5].[CompanyPatientId], [a5].[CreatedBy], [a5].[CreatedDate], [a5].[DeletedDate], [a5].[Dentomaxillofacial], [a5].[DisplayOrder], [a5].[ExamDate], [a5].[ExternalMedicine], [a5].[Height], [a5].[InternalMedicine], [a5].[IsDone], [a5].[Note], [a5].[Ophthalmology], [a5].[Otorhinolaryngology], [a5].[PrintCount], [a5].[Pulse], [a5].[Reason], [a5].[Test], [a5].[UpdatedBy], [a5].[UpdatedDate], [a5].[Weigth]
+FROM [AppCompanyPatient] AS [a2]
+LEFT JOIN [AppCompany] AS [a3] ON [a2].[CompanyId] = [a3].[Id]
+LEFT JOIN [AppCompanyDepartment] AS [a4] ON [a2].[DepartmentId] = [a4].[Id]
+LEFT JOIN [AppCompanyPatientHistory] AS [a5] ON [a2].[Id] = [a5].[CompanyPatientId]
+WHERE [a2].[DeletedDate] IS NOT NULL
+ORDER BY [a2].[DisplayOrder] DESC, [a2].[Id] DESC, [a3].[Id], [a4].[Id], [a5].[Id] 
+2023-07-09 21:14:07.925 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 21:14:07.952 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 21:14:07.978  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /CompanyPatient/HidedPatient => 200 
+2023-07-09 21:24:33.724  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Application started. Press Ctrl+C to shut down. 
+2023-07-09 21:24:33.794  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Hosting environment: Development 
+2023-07-09 21:24:33.802  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0]: Content root path: D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Web 
+2023-07-09 21:24:34.564  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET / => 200 
+2023-07-09 21:24:38.401 DEBUG App.Web.Controllers.CompanyPatientController.MoveNext [112]: SELECT [a2].[CompanyId], [a3].[Name], [a2].[CreatedDate], [a2].[DeletedDate], [a2].[DepartmentId], [a4].[Name], [a2].[DigitalInfo], [a2].[DoB], [a2].[EmployeeCode], (
+    SELECT TOP(1) [a].[ExamDate]
+    FROM [AppCompanyPatientHistory] AS [a]
+    WHERE [a2].[Id] = [a].[CompanyPatientId]
+    ORDER BY [a].[Id] DESC), [a2].[FullName], [a2].[FullNameNoAccent], [a2].[Gender], [a2].[Id], [a2].[IdentityCode], [a2].[IdentityDoI], [a2].[IdentityPoI], [a2].[ImportDate], (
+    SELECT TOP(1) [a0].[IsDone]
+    FROM [AppCompanyPatientHistory] AS [a0]
+    WHERE [a2].[Id] = [a0].[CompanyPatientId]
+    ORDER BY [a0].[Id] DESC), (
+    SELECT TOP(1) [a1].[PrintCount]
+    FROM [AppCompanyPatientHistory] AS [a1]
+    WHERE [a2].[Id] = [a1].[CompanyPatientId]
+    ORDER BY [a1].[Id] DESC), [a2].[YoB], [a3].[Id], [a4].[Id], [a5].[Id], [a5].[BloodPressure], [a5].[Classification], [a5].[CompanyPatientId], [a5].[CreatedBy], [a5].[CreatedDate], [a5].[DeletedDate], [a5].[Dentomaxillofacial], [a5].[DisplayOrder], [a5].[ExamDate], [a5].[ExternalMedicine], [a5].[Height], [a5].[InternalMedicine], [a5].[IsDone], [a5].[Note], [a5].[Ophthalmology], [a5].[Otorhinolaryngology], [a5].[PrintCount], [a5].[Pulse], [a5].[Reason], [a5].[Test], [a5].[UpdatedBy], [a5].[UpdatedDate], [a5].[Weigth]
+FROM [AppCompanyPatient] AS [a2]
+LEFT JOIN [AppCompany] AS [a3] ON [a2].[CompanyId] = [a3].[Id]
+LEFT JOIN [AppCompanyDepartment] AS [a4] ON [a2].[DepartmentId] = [a4].[Id]
+LEFT JOIN [AppCompanyPatientHistory] AS [a5] ON [a2].[Id] = [a5].[CompanyPatientId]
+WHERE [a2].[DeletedDate] IS NULL
+ORDER BY [a2].[DisplayOrder] DESC, [a2].[Id] DESC, [a3].[Id], [a4].[Id], [a5].[Id] 
+2023-07-09 21:24:38.811 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 21:24:38.960 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 21:24:39.150 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 21:24:39.179 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 21:24:39.232 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 21:24:39.253 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 21:24:39.482  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /CompanyPatient => 200 
+2023-07-09 21:24:41.014 DEBUG App.Web.Controllers.CompanyPatientController.MoveNext [112]: SELECT [a2].[CompanyId], [a3].[Name], [a2].[CreatedDate], [a2].[DeletedDate], [a2].[DepartmentId], [a4].[Name], [a2].[DigitalInfo], [a2].[DoB], [a2].[EmployeeCode], (
+    SELECT TOP(1) [a].[ExamDate]
+    FROM [AppCompanyPatientHistory] AS [a]
+    WHERE [a2].[Id] = [a].[CompanyPatientId]
+    ORDER BY [a].[Id] DESC), [a2].[FullName], [a2].[FullNameNoAccent], [a2].[Gender], [a2].[Id], [a2].[IdentityCode], [a2].[IdentityDoI], [a2].[IdentityPoI], [a2].[ImportDate], (
+    SELECT TOP(1) [a0].[IsDone]
+    FROM [AppCompanyPatientHistory] AS [a0]
+    WHERE [a2].[Id] = [a0].[CompanyPatientId]
+    ORDER BY [a0].[Id] DESC), (
+    SELECT TOP(1) [a1].[PrintCount]
+    FROM [AppCompanyPatientHistory] AS [a1]
+    WHERE [a2].[Id] = [a1].[CompanyPatientId]
+    ORDER BY [a1].[Id] DESC), [a2].[YoB], [a3].[Id], [a4].[Id], [a5].[Id], [a5].[BloodPressure], [a5].[Classification], [a5].[CompanyPatientId], [a5].[CreatedBy], [a5].[CreatedDate], [a5].[DeletedDate], [a5].[Dentomaxillofacial], [a5].[DisplayOrder], [a5].[ExamDate], [a5].[ExternalMedicine], [a5].[Height], [a5].[InternalMedicine], [a5].[IsDone], [a5].[Note], [a5].[Ophthalmology], [a5].[Otorhinolaryngology], [a5].[PrintCount], [a5].[Pulse], [a5].[Reason], [a5].[Test], [a5].[UpdatedBy], [a5].[UpdatedDate], [a5].[Weigth]
+FROM [AppCompanyPatient] AS [a2]
+LEFT JOIN [AppCompany] AS [a3] ON [a2].[CompanyId] = [a3].[Id]
+LEFT JOIN [AppCompanyDepartment] AS [a4] ON [a2].[DepartmentId] = [a4].[Id]
+LEFT JOIN [AppCompanyPatientHistory] AS [a5] ON [a2].[Id] = [a5].[CompanyPatientId]
+WHERE [a2].[DeletedDate] IS NOT NULL
+ORDER BY [a2].[DisplayOrder] DESC, [a2].[Id] DESC, [a3].[Id], [a4].[Id], [a5].[Id] 
+2023-07-09 21:24:41.097 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyCode], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompany] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 21:24:41.129 DEBUG App.Data.Repositories.GenericRepository.LogDebugQuery [76]: SELECT [a].[Id], [a].[CompanyId], [a].[CreatedBy], [a].[CreatedDate], [a].[DeletedDate], [a].[DisplayOrder], [a].[Name], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCompanyDepartment] AS [a]
+WHERE [a].[DeletedDate] IS NULL
+ORDER BY [a].[DisplayOrder] DESC, [a].[Id] DESC 
+2023-07-09 21:24:41.171  INFO App.Web.WebConfig.Middlewares.AppLoggingMiddleware.MoveNext [0]: USER_ID: 1, USERNAME: admin; GET /CompanyPatient/HidedPatient => 200 

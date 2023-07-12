@@ -1,0 +1,12 @@
+﻿@using App.Web.WebConfig
+
+@{ 
+	Type classificationType = typeof(Classification);
+	var fields = classificationType.GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
+}
+
+@foreach (var field in fields)
+{
+	string fieldValue = field.GetValue(null).ToString();
+	<option value="@fieldValue">@fieldValue</option>
+}

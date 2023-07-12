@@ -1,0 +1,69 @@
+﻿@model App.Web.ViewModels.CompanyPatient.PatientSearchVM
+
+<div class="card mt-4">
+	<section class="content">
+		<div class="card-body">
+			<form class="form-horizontal form-search">
+				<div class="row">
+					<div class="form-group col-md-3">
+						<label asp-for="EmployeeCode" class="control-label">Mã nhân viên</label>
+						<input asp-for="EmployeeCode" type="text" class="form-control" placeholder="Nhập đầy đủ để tìm chính xác" />
+						<span asp-validation-for="EmployeeCode" class="text-danger small"></span>
+					</div>
+					<div class="form-group col-md-3">
+						<label asp-for="PatientName" class="control-label">Tên</label>
+						<input asp-for="PatientName" type="text" class="form-control" />
+						<span asp-validation-for="PatientName" class="text-danger small"></span>
+					</div>
+					<div class="form-group col-md-3">
+						<label asp-for="ExamFrom" class="control-label">Thời gian khám, từ ngày</label>
+						<input asp-for="ExamFrom" type="date" class="form-control" />
+						<span asp-validation-for="ExamFrom" class="text-danger small"></span>
+					</div>
+					<div class="form-group col-md-3">
+						<label asp-for="ExamTo" class="control-label">Thời gian khám, đến ngày</label>
+						<input asp-for="ExamTo" type="date" class="form-control" />
+						<span asp-validation-for="ExamTo" class="text-danger small"></span>
+					</div>
+					<div class="form-group col-md-3">
+						<label for="CompanySearchId" class="control-label">Công ty</label>
+						<select asp-for="CompanySearchId" class="form-control js-search-company">
+							<option value="">--- Chọn công ty ---</option>
+							<vc:list-company seleteted-id="Model.CompanySearchId"></vc:list-company>
+						</select>
+					</div>
+					<div class="form-group col-md-3">
+						<label asp-for="DepartmentSearchId" class="control-label">Phòng ban</label>
+						<select asp-for="DepartmentSearchId"
+								class="select-status form-control js-select-search-department">
+							<option value="" class="d-none-value">--- Chọn phòng ban ---</option>
+							<vc:list-department seleteted-id="Model.DepartmentSearchId"></vc:list-department>
+						</select>
+					</div>
+					<div class="form-group col-md-3">
+						<label asp-for="ExamStatus" class="control-label">Kết quả khám</label>
+						<select asp-for="ExamStatus" class="form-control">
+							<option value="">--- Chọn một giá trị ---</option>
+							<option value="@ExamStatus.NO_EXAM">Chưa khám</option>
+							<option value="@ExamStatus.NO_RESULT">Đã khám, chưa nhập kết quả</option>
+							<option value="@ExamStatus.HAS_RESULT">Đã nhập kết quả khám</option>
+						</select>
+					</div>
+					<div class="col-12">
+						<div class="form-group text-center">
+							<button type="submit" class="btn btn-info px-5"><i class="fa fa-search mr-1"></i>Tìm kiếm</button>
+						</div>
+					</div>
+				</div>
+				@if (Model.ExamFrom?.Date > Model.ExamTo?.Date)
+				{
+					<div class="row">
+						<div class="col">
+							<p class="text-danger">Khoảng thời gian tìm kiếm không hợp lệ.</p>
+						</div>
+					</div>
+				}
+			</form>
+		</div>
+	</section>
+</div>

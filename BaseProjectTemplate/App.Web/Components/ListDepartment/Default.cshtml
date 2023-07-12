@@ -1,0 +1,17 @@
+﻿@model IEnumerable<App.Data.Entities.AppCompanyDepartment>
+@{
+	int? selectedId = (int?)ViewBag.SelectedDepartmentId;
+	int? selectedCompanyId = (int?)ViewBag.CompanySelectedId;
+}
+@foreach (var item in Model)
+{
+	if (selectedId.HasValue && selectedId.Value == item.Id)
+	{
+		<option selected="selected" class="@(selectedCompanyId.HasValue && item.CompanyId == selectedCompanyId.Value ? "" : "d-none")" 
+				value="@item.Id" data-company-id="@item.CompanyId">@item.Name</option>
+		continue;
+	}
+	<option value="@item.Id" class="@(selectedCompanyId.HasValue && item.CompanyId == selectedCompanyId.Value ? "" : "d-none")" 
+			data-company-id="@item.CompanyId">@item.Name</option>
+
+}

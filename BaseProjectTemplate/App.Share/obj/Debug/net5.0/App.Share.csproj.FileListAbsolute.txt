@@ -1,0 +1,12 @@
+D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Share\bin\Debug\net5.0\App.Share.deps.json
+D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Share\bin\Debug\net5.0\App.Share.dll
+D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Share\bin\Debug\net5.0\App.Share.pdb
+D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Share\obj\Debug\net5.0\App.Share.csproj.AssemblyReference.cache
+D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Share\obj\Debug\net5.0\App.Share.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Share\obj\Debug\net5.0\App.Share.AssemblyInfoInputs.cache
+D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Share\obj\Debug\net5.0\App.Share.AssemblyInfo.cs
+D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Share\obj\Debug\net5.0\App.Share.csproj.CoreCompileInputs.cache
+D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Share\obj\Debug\net5.0\App.Share.dll
+D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Share\obj\Debug\net5.0\refint\App.Share.dll
+D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Share\obj\Debug\net5.0\App.Share.pdb
+D:\Projects\C#\Lien_BenhVien_2\BaseProjectTemplate\App.Share\obj\Debug\net5.0\ref\App.Share.dll

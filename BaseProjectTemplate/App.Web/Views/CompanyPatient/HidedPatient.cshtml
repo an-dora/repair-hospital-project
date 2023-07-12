@@ -1,0 +1,79 @@
+﻿@using App.Web.ViewModels.CompanyPatient
+@model App.Web.ViewModels.CompanyPatient.PatientIndexVM
+
+@{
+	ViewData["Title"] = "Danh sách người khám bệnh đã ẩn";
+}
+@section head{
+	<link href="~/css/css-print-company-patient.css" rel="stylesheet" asp-append-version="true" />
+}
+@section scripts {
+	<script src="~/lib/mustachejs/mustache.js"></script>
+	<script src="~/js/company-patient/index.js" asp-append-version="true"></script>
+}
+
+
+<div class="my-2 d-flex">
+	<partial name="_BackToList" />
+</div>
+
+<partial name="_FormSearch" model="Model.Search" />
+
+<div class="table-responsive">
+	<table class="table table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Tên</th>
+				<th>Thông tin</th>
+				<th>Ngày ẩn</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model.Patients)
+			{
+				<tr>
+					<td class="fit">@item.RowIndex</td>
+					<td>@Html.DisplayFor(modelItem => item.FullName)</td>
+					<td>Cty: @item.CompanyName, phòng ban: @item.DepartmentName</td>
+					<td class="fit">@item.DeletedDate.ToDMYHM()</td>
+                    <td class="fit">
+                        @if (User.IsInPermission(AuthConst.AppCompanyPatient.UNHIDE))
+                        {
+                            <a asp-action="UnHide" asp-route-id="@item.Id"
+                               class="btn btn-sm btn-outline-secondary js-delete-confirm"
+                               title="Hiển thị bệnh nhân" data-msg="Xác nhận hiển thị lại thông tin của [@item.FullName]?">
+                                <i class="fas fa-eye"></i>
+                            </a>
+
+                        }
+                        else
+                        {
+                            <button disabled class="btn btn-sm btn-outline-secondary">
+                                <i class="fas fa-eye"></i>
+                            </button>
+
+                        }
+                        @if (User.IsInPermission(AuthConst.AppCompanyPatient.DELETE))
+                        {
+                            <a asp-action="Delete" asp-route-id="@item.Id"
+                               class="btn btn-sm btn-outline-secondary js-delete-confirm"
+                               title="Hiển thị bệnh nhân" data-msg="Dữ liệu bị xóa sẽ không thể khôi phục, chắc chắn xóa?">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        }
+                        else
+                        {
+                            <button disabled class="btn btn-sm btn-outline-secondary">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        }
+                    </td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
+
+<partial name="_Pager" model="Model.Patients" />
